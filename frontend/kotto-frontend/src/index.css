@@ -29,3 +29,29 @@ body{
 }
 
 a{ color: inherit; }
+
+/* Cart drawer */
+.drawer{
+  position: fixed;
+  top: 0;
+  right: -420px;
+  width: min(420px, 92vw);
+  height: 100dvh;
+  background: #0b1220;
+  color: rgba(255,255,255,0.92);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.45);
+  transition: right 0.28s ease;
+  padding: 20px;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.drawer.open{ right: 0; }
+
+.overlay{
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.62);
+  backdrop-filter: blur(2px);
+  z-index: 999;
+}
