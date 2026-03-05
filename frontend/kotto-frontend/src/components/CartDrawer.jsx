@@ -144,17 +144,34 @@ export default function CartDrawer() {
                       style={{
                         width: 24,
                         height: 24,
+                        minWidth: 24,
+                        minHeight: 24,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         padding: 0,
-                        background: "rgba(15,23,42,0.9)",
-                        border: "1px solid rgba(148,163,184,0.6)",
+                        lineHeight: 1,
+                        background:
+                          "linear-gradient(135deg, #ff7a1a, #ffb347)",
+                        border: "none",
+                        borderRadius: "50%",
+                        color: "#111827",
+                        fontWeight: 700,
+                        fontSize: "1rem",
+                        boxSizing: "border-box",
                       }}
                     >
-                      -
+                      −
                     </button>
-                    <span style={{ minWidth: 18, textAlign: "center", fontSize: "0.85rem" }}>
+                    <span
+                      style={{
+                        minWidth: 20,
+                        textAlign: "center",
+                        fontSize: "0.9rem",
+                        fontWeight: 600,
+                        color: "#ffffff",
+                      }}
+                    >
                       {item.quantity}
                     </span>
                     <button
@@ -162,12 +179,21 @@ export default function CartDrawer() {
                       style={{
                         width: 24,
                         height: 24,
+                        minWidth: 24,
+                        minHeight: 24,
                         display: "flex",
                         alignItems: "center",
                         justifyContent: "center",
                         padding: 0,
+                        lineHeight: 1,
                         background:
                           "linear-gradient(135deg, #ff7a1a, #ffb347)",
+                        border: "none",
+                        borderRadius: "50%",
+                        color: "#111827",
+                        fontWeight: 700,
+                        fontSize: "1rem",
+                        boxSizing: "border-box",
                       }}
                     >
                       +
