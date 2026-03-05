@@ -1,0 +1,23 @@
+.navbar{
+  height:70px;
+  background:white;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0 40px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+}
+
+.logo{
+  color:#FF3400;
+}
+
+.nav-links button{
+  margin-left:15px;
+  padding:8px 16px;
+  border:none;
+  background:#FF3400;
+  color:white;
+  border-radius:6px;
+  cursor:pointer;
+}

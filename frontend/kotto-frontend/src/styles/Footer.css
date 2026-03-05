@@ -1,0 +1,16 @@
+.footer{
+  margin-top:60px;
+  padding:30px;
+  background:#222;
+  color:white;
+  text-align:center;
+}
+
+.footer-links{
+  margin-top:10px;
+}
+
+.footer-links span{
+  margin:0 10px;
+  cursor:pointer;
+}
