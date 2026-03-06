@@ -1,68 +1,76 @@
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* KOTTO Premium Color Palette */
+  --primary: #FF3400;
+  /* Orange */
+  --primary-hover: #E02E00;
+  --secondary: #FFB200;
+  /* Yellow */
+  --secondary-hover: #E5A000;
+  --danger: #FF0000;
+  /* Red */
+  --success: #319805;
+  /* Green */
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Background & Surface Colors (Dark Theme) */
+  --bg-color: #0d1117;
+  --surface-color: #161b22;
+  --surface-color-light: #21262d;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
+  /* Text Colors */
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+
+  /* Typography */
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  text-decoration: none;
+  color: inherit;
 }
 
-body {
-  margin: 0;
+* {
+  box-sizing: border-box;
+}
+
+/* Light mode support (Override if User prefers light mode, or we can force dark mode for premium look. Let's force dark mode for a premium vibe for now unless necessary) */
+
+/* Cart drawer behavior */
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  bottom: 0;
+  width: 100%;
+  max-width: 450px;
+  background-color: var(--surface-color);
+  z-index: 1000;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+  color: var(--text-main);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.drawer.open {
+  right: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2, 6, 23, 0.62);
+  backdrop-filter: blur(2px);
+  z-index: 999;
 }

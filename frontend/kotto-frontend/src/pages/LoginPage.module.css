@@ -1,0 +1,73 @@
+.page{
+  min-height: calc(100vh - 120px);
+  background: radial-gradient(900px 420px at 15% 0%, rgba(220,20,60,.14), transparent 55%),
+              linear-gradient(180deg, var(--kotto-bg), var(--kotto-bg-2));
+  padding: 34px 20px 10px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+}
+.card{
+  width: min(520px, 100%);
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,.07);
+  border-radius: 22px;
+  box-shadow: 0 18px 50px rgba(0,0,0,.10);
+  padding: 22px;
+}
+.h1{
+  margin: 0 0 6px;
+  font-family: var(--font-display);
+  letter-spacing: -.02em;
+}
+.lead{
+  margin: 0 0 16px;
+  color: var(--kotto-ink-3);
+  font-size: 13.5px;
+}
+.bannerError{
+  margin: 0 0 12px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  font-size: 14px;
+  background: rgba(220,20,60,.08);
+  border: 1px solid rgba(220,20,60,.22);
+  color: #7f1d1d;
+}
+.form{
+  display:grid;
+  gap: 12px;
+}
+.label{
+  display:grid;
+  gap: 7px;
+  font-size: 13px;
+  color: var(--kotto-ink-2);
+  font-weight: 600;
+}
+.input{
+  width: 100%;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.12);
+  background: rgba(255,255,255,.9);
+  padding: 11px 12px;
+  font-size: 14px;
+  outline: none;
+}
+.input:focus{
+  border-color: rgba(220,20,60,.55);
+  box-shadow: 0 0 0 4px rgba(220,20,60,.15);
+}
+.submit{
+  margin-top: 6px;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  padding: 12px 14px;
+  font-weight: 700;
+  background: linear-gradient(180deg, var(--kotto-red-600), var(--kotto-red-700));
+  color: white;
+  box-shadow: 0 16px 34px rgba(220,20,60,.26);
+}
+.submit:disabled{ opacity: .65; cursor: not-allowed; }
