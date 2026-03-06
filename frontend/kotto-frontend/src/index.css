@@ -1,20 +1,70 @@
-/* Light mode support */
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+:root {
+  /* KOTTO Premium Color Palette */
+  --primary: #FF3400;
+  /* Orange */
+  --primary-hover: #E02E00;
+  --secondary: #FFB200;
+  /* Yellow */
+  --secondary-hover: #E5A000;
+  --danger: #FF0000;
+  /* Red */
+  --success: #319805;
+  /* Green */
+
+  /* Background & Surface Colors (Dark Theme) */
+  --bg-color: #0d1117;
+  --surface-color: #161b22;
+  --surface-color-light: #21262d;
+
+  /* Text Colors */
+  --text-main: #f0f6fc;
+  --text-muted: #8b949e;
+
+  /* Typography */
+  --font-family: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Light mode support (Override if User prefers light mode, or we can force dark mode for premium look. Let's force dark mode for a premium vibe for now unless necessary) */
+
 /* Cart drawer behavior */
-.drawer.open { 
-  right: 0; 
+.drawer {
+  position: fixed;
+  top: 0;
+  right: -450px;
+  bottom: 0;
+  width: 100%;
+  max-width: 450px;
+  background-color: var(--surface-color);
+  z-index: 1000;
+  transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+  color: var(--text-main);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.drawer.open {
+  right: 0;
 }
 
 .overlay {

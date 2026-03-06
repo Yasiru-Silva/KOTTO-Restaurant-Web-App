@@ -96,15 +96,15 @@ export default function CartDrawer() {
                     style={{
                       fontWeight: 600,
                       marginBottom: 4,
-                      fontSize: "0.95rem",
+                      fontSize: "1rem",
                     }}
                   >
                     {item.name}
                   </div>
                   <div
                     style={{
-                      fontSize: "0.8rem",
-                      color: "#a0aec0",
+                      fontSize: "0.85rem",
+                      color: "var(--text-muted)",
                       marginBottom: 6,
                     }}
                   >
@@ -112,9 +112,9 @@ export default function CartDrawer() {
                   </div>
                   <div
                     style={{
-                      fontSize: "0.8rem",
-                      color: "#f6ad55",
-                      fontWeight: 500,
+                      fontSize: "0.9rem",
+                      color: "var(--secondary)",
+                      fontWeight: 600,
                     }}
                   >
                     LKR {(item.price * item.quantity).toLocaleString()}
@@ -152,13 +152,14 @@ export default function CartDrawer() {
                         padding: 0,
                         lineHeight: 1,
                         background:
-                          "linear-gradient(135deg, #ff7a1a, #ffb347)",
-                        border: "none",
+                          "var(--surface-color-light)",
+                        border: "1px solid rgba(255,255,255,0.1)",
                         borderRadius: "50%",
-                        color: "#111827",
+                        color: "var(--text-main)",
                         fontWeight: 700,
                         fontSize: "1rem",
                         boxSizing: "border-box",
+                        cursor: "pointer",
                       }}
                     >
                       −
@@ -187,13 +188,14 @@ export default function CartDrawer() {
                         padding: 0,
                         lineHeight: 1,
                         background:
-                          "linear-gradient(135deg, #ff7a1a, #ffb347)",
-                        border: "none",
+                          "var(--surface-color-light)",
+                        border: "1px solid rgba(255,255,255,0.1)",
                         borderRadius: "50%",
-                        color: "#111827",
+                        color: "var(--text-main)",
                         fontWeight: 700,
                         fontSize: "1rem",
                         boxSizing: "border-box",
+                        cursor: "pointer",
                       }}
                     >
                       +
@@ -267,12 +269,13 @@ export default function CartDrawer() {
               padding: "10px 0",
               borderRadius: "999px",
               background:
-                "linear-gradient(135deg, #ff7a1a, #ffb347)",
+                "linear-gradient(135deg, var(--primary), var(--primary-hover))",
               border: "none",
-              color: "#111827",
+              color: "white",
               fontWeight: 600,
-              fontSize: "0.95rem",
-              boxShadow: "0 10px 25px rgba(248,148,60,0.45)",
+              fontSize: "1rem",
+              boxShadow: "0 10px 25px rgba(255,52,0,0.4)",
+              cursor: "pointer",
             }}
           >
             Proceed to Checkout

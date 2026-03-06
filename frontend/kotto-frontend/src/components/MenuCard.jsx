@@ -1,8 +1,12 @@
+import { useCart } from "../context/CartContext";
 import "../styles/MenuCard.css";
 
 function MenuCard({ item }) {
+  const { addToCart } = useCart();
 
-  const addToCart = () => {
+  const handleAddToCart = () => {
+    addToCart(item);
+    // Optionally, still show an alert or open the cart
     alert(item.name + " added to cart!");
   };
 
@@ -21,7 +25,7 @@ function MenuCard({ item }) {
 
           <span className="price">Rs {item.price}</span>
 
-          <button onClick={addToCart}>
+          <button onClick={handleAddToCart}>
             Add to Cart
           </button>
 

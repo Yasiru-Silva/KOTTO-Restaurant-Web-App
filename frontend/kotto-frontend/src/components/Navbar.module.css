@@ -1,68 +1,98 @@
-.header{
+.header {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: var(--kotto-red-900);
-  color: white;
-  border-bottom: 1px solid rgba(255,255,255,.08);
+  background: rgba(13, 17, 23, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  color: var(--text-main);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
-.inner{
+
+.inner {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 14px 20px;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
 }
-.brand{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-  user-select:none;
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  user-select: none;
 }
-.logo{
-  width: 34px;
-  height: 34px;
-  border-radius: 10px;
-  background: rgba(0,0,0,.25);
-  display:flex;
-  align-items:center;
-  justify-content:center;
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), #cc2a00);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-weight: 800;
+  font-size: 1.2rem;
   letter-spacing: .5px;
-  border: 1px solid rgba(255,255,255,.12);
-  box-shadow: 0 10px 22px rgba(0,0,0,.18);
+  box-shadow: 0 4px 12px rgba(255, 52, 0, 0.3);
+  color: #fff;
 }
-.brandText{
-  font-family: var(--font-display);
+
+.brandText {
+  font-family: var(--font-family);
   font-weight: 700;
-  letter-spacing: .08em;
+  font-size: 1.4rem;
+  letter-spacing: .05em;
+  background: linear-gradient(to right, #fff, #ccc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
-.nav{
-  display:flex;
-  align-items:center;
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
-.navLink{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding: 10px 14px;
-  border-radius: 999px;
-  color: rgba(255,255,255,.92);
-  text-decoration:none;
+
+.navLink,
+.navButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 18px;
+  border-radius: 99px;
+  color: var(--text-main);
+  text-decoration: none;
   font-weight: 600;
-  border: 1px solid rgba(255,255,255,.12);
-  background: rgba(0,0,0,.12);
-  transition: transform .15s ease, background .15s ease, border-color .15s ease;
+  font-size: 0.95rem;
+  border: 1px solid transparent;
+  background: transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  font-family: var(--font-family);
 }
-.navLink:hover{
-  transform: translateY(-1px);
-  background: rgba(0,0,0,.2);
-  border-color: rgba(255,255,255,.22);
+
+.navLink:hover,
+.navButton:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
 }
-.active{
-  background: var(--kotto-red-600);
-  border-color: rgba(255,255,255,.2);
-  box-shadow: 0 12px 26px rgba(220,20,60,.25);
+
+.navButton {
+  background: rgba(255, 52, 0, 0.1);
+  color: var(--primary);
+  border-color: rgba(255, 52, 0, 0.2);
+}
+
+.navButton:hover {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 52, 0, 0.3);
+}
+
+.active {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.15);
 }

@@ -1,7 +1,11 @@
 import { NavLink } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 import styles from "./Navbar.module.css";
 
 export default function Navbar() {
+  const { openCart, cartItems } = useCart();
+  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+
   const scrollMenu = () => {
     const section = document.getElementById("menu-section");
     if (section) section.scrollIntoView({ behavior: "smooth" });
@@ -33,7 +37,9 @@ export default function Navbar() {
           </button>
 
           {/* Cart button */}
-          <button className={styles.navButton}>Cart</button>
+          <button className={styles.navButton} onClick={openCart}>
+            Cart {cartItemCount > 0 && `(${cartItemCount})`}
+          </button>
         </nav>
       </div>
     </header>

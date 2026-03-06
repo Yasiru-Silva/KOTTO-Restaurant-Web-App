@@ -1,50 +1,47 @@
+import { useEffect, useState } from "react";
 import MenuCard from "./MenuCard";
+import { getMenu } from "../services/menuService";
 import "../styles/MenuPage.css";
 
-const sampleMenu = [
-  {
-    id: 1,
-    name: "Chicken Kottu",
-    price: 1200,
-    description: "Delicious Sri Lankan street food",
-    image:
-      "https://images.unsplash.com/photo-1604908176997-431b3e3c42f6"
-  },
-  {
-    id: 2,
-    name: "Cheese Kottu",
-    price: 1300,
-    description: "Loaded with melted cheese",
-    image:
-      "https://images.unsplash.com/photo-1546069901-ba9599a7e63c"
-  },
-  {
-    id: 3,
-    name: "Seafood Kottu",
-    price: 1500,
-    description: "Fresh seafood mix",
-    image:
-      "https://images.unsplash.com/photo-1555939594-58d7cb561ad1"
-  },
-  {
-    id: 4,
-    name: "Veg Kottu",
-    price: 1000,
-    description: "Healthy vegetarian option",
-    image:
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836"
-  }
-];
-
 function MenuList() {
+  const [menu, setMenu] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchMenu = async () => {
+      try {
+        const data = await getMenu();
+        // Assuming the backend returns an array of menu items
+        setMenu(data);
+      } catch (err) {
+        console.error("Failed to fetch menu:", err);
+        setError("Could not load menu. Please try again later.");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMenu();
+  }, []);
+
+  if (loading) {
+    return <div style={{ textAlign: "center", padding: "40px", color: "var(--text-muted)" }}>Loading delicious recipes...</div>;
+  }
+
+  if (error) {
+    return <div style={{ textAlign: "center", padding: "40px", color: "var(--danger)" }}>{error}</div>;
+  }
+
+  if (menu.length === 0) {
+    return <div style={{ textAlign: "center", padding: "40px", color: "var(--text-muted)" }}>No items available at the moment.</div>;
+  }
 
   return (
     <div className="menu-grid">
-
-      {sampleMenu.map((item) => (
+      {menu.map((item) => (
         <MenuCard key={item.id} item={item} />
       ))}
-
     </div>
   );
 }

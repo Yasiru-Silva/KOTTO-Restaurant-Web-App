@@ -1,18 +1,37 @@
-.menu-page{
-  padding:30px;
+.menu-page {
+  padding: 60px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.best-deals{
-  margin-top:40px;
+.menu-title {
+  margin-top: 20px;
+  font-size: 2.5rem;
+  font-weight: 700;
+  text-align: center;
+  color: var(--text-main);
+  margin-bottom: 40px;
+  position: relative;
 }
 
-.menu-title{
-  margin-top:40px;
+.menu-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: var(--primary);
+  border-radius: 2px;
 }
 
-.menu-grid{
-  margin-top:20px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.best-deals {
+  margin-top: 60px;
 }
