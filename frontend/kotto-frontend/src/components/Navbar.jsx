@@ -1,6 +1,7 @@
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import styles from "./Navbar.module.css";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -16,51 +17,54 @@ const Navbar = () => {
   const isAdmin = role === "ADMIN" || role === "ROLE_ADMIN";
 
   return (
-    <nav style={{ display: "flex", justifyContent: "space-between", padding: "10px" }}>
+    <header className={styles.header}>
+      <nav className={styles.inner}>
 
-      {/* LEFT */}
-      <div>
-        {isAdmin ? (
-          <>
-            <button>Inventory</button>
-            <button>Reservations</button>
-          </>
-        ) : (
-          <button onClick={() => navigate("/reservation")}>Reservation</button>
-        )}
-      </div>
+        {/* LEFT */}
+        <div className={styles.nav}>
+          {isAdmin ? (
+            <>
+              <button className={styles.navButton}>Inventory</button>
+              <button className={styles.navButton}>Reservations</button>
+            </>
+          ) : (
+            <button className={styles.navButton} onClick={() => navigate("/reservation")}>Reservation</button>
+          )}
+        </div>
 
-      {/* CENTER */}
-      <div>
-        <h2 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>KOTTO</h2>
-      </div>
+        {/* CENTER */}
+        <div className={styles.brand} style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+          <div className={styles.logo}>K</div>
+          <span className={styles.brandText}>KOTTO</span>
+        </div>
 
-      {/* RIGHT */}
-      <div>
-        {!user && (
-          <>
-            <button onClick={openCart}>Cart</button>
-            <button onClick={() => navigate("/login")}>Login</button>
-          </>
-        )}
+        {/* RIGHT */}
+        <div className={styles.nav}>
+          {!user && (
+            <>
+              <button className={styles.navButton} onClick={openCart}>Cart</button>
+              <button className={styles.navButton} onClick={() => navigate("/login")}>Login</button>
+            </>
+          )}
 
-        {isUser && (
-          <>
-            <button onClick={openCart}>Cart</button>
-            <button>Profile</button>
-          </>
-        )}
+          {isUser && (
+            <>
+              <button className={styles.navButton} onClick={openCart}>Cart</button>
+              <button className={styles.navButton}>Profile</button>
+            </>
+          )}
 
-        {isAdmin && (
-          <>
-            <button>Add Item</button>
-            <button>Orders</button>
-            <button onClick={logout}>Logout</button>
-          </>
-        )}
-      </div>
+          {isAdmin && (
+            <>
+              <button className={styles.navButton}>Add Item</button>
+              <button className={styles.navButton}>Orders</button>
+              <button className={styles.navButton} onClick={logout}>Logout</button>
+            </>
+          )}
+        </div>
 
-    </nav>
+      </nav>
+    </header>
   );
 };
 
