@@ -11,9 +11,12 @@ import Login from "./pages/Login";              // Login page
 import Register from "./pages/Register";        // Register page
 import Logout from "./pages/Logout";            // Logout page
 
+import { AuthProvider } from "./context/AuthContext";
+
 export default function App() {
   return (
-    <CartProvider>
+    <AuthProvider>
+      <CartProvider>
 
       {/* Navbar appears on ALL pages */}
       {/* If the mysterious reservation UI appears everywhere, 
@@ -61,5 +64,6 @@ export default function App() {
       <CartDrawer />
 
     </CartProvider>
+    </AuthProvider>
   );
 }
