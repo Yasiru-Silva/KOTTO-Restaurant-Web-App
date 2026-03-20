@@ -1,47 +1,67 @@
-import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
-import styles from "./Navbar.module.css";
 
-export default function Navbar() {
-  const { openCart, cartItems } = useCart();
-  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const { openCart } = useCart();
 
-  const scrollMenu = () => {
-    const section = document.getElementById("menu-section");
-    if (section) section.scrollIntoView({ behavior: "smooth" });
-  };
+  console.log("USER:", user);
+  console.log("ROLE:", user?.role);
+
+  const role = user?.role;
+
+  const isUser = role === "USER" || role === "ROLE_USER";
+  const isAdmin = role === "ADMIN" || role === "ROLE_ADMIN";
 
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
-        {/* Brand / Logo */}
-        <div className={styles.brand}>
-          <div className={styles.logo} aria-hidden="true">K</div>
-          <span className={styles.brandText}>KOTTO</span>
-        </div>
+    <nav style={{ display: "flex", justifyContent: "space-between", padding: "10px" }}>
 
-        {/* Navigation */}
-        <nav className={styles.nav} aria-label="Primary">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-            }
-          >
-            Home
-          </NavLink>
-
-          {/* Scroll to Menu */}
-          <button className={styles.navButton} onClick={scrollMenu}>
-            Menu
-          </button>
-
-          {/* Cart button */}
-          <button className={styles.navButton} onClick={openCart}>
-            Cart {cartItemCount > 0 && `(${cartItemCount})`}
-          </button>
-        </nav>
+      {/* LEFT */}
+      <div>
+        {isAdmin ? (
+          <>
+            <button>Orders</button>
+            <button>Reservations</button>
+          </>
+        ) : (
+          <button onClick={() => navigate("/reservation")}>Reservation</button>
+        )}
       </div>
-    </header>
+
+      {/* CENTER */}
+      <div>
+        <h2 style={{ cursor: "pointer" }} onClick={() => navigate("/")}>KOTTO</h2>
+      </div>
+
+      {/* RIGHT */}
+      <div>
+        {!user && (
+          <>
+            <button onClick={openCart}>Cart</button>
+            <button onClick={() => navigate("/login")}>Login</button>
+          </>
+        )}
+
+        {isUser && (
+          <>
+            <button>Cart</button>
+            <button>Profile</button>
+          </>
+        )}
+
+        {isAdmin && (
+          <>
+            <button>Add Item</button>
+            <button>Inventory</button>
+            <button onClick={logout}>Logout</button>
+          </>
+        )}
+      </div>
+
+    </nav>
   );
-}
+};
+
+export default Navbar;
