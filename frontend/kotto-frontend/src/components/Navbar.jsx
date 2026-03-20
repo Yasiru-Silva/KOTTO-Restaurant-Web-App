@@ -22,7 +22,7 @@ const Navbar = () => {
       <div>
         {isAdmin ? (
           <>
-            <button>Orders</button>
+            <button>Inventory</button>
             <button>Reservations</button>
           </>
         ) : (
@@ -46,7 +46,7 @@ const Navbar = () => {
 
         {isUser && (
           <>
-            <button>Cart</button>
+            <button onClick={openCart}>Cart</button>
             <button>Profile</button>
           </>
         )}
@@ -54,7 +54,7 @@ const Navbar = () => {
         {isAdmin && (
           <>
             <button>Add Item</button>
-            <button>Inventory</button>
+            <button>Orders</button>
             <button onClick={logout}>Logout</button>
           </>
         )}
