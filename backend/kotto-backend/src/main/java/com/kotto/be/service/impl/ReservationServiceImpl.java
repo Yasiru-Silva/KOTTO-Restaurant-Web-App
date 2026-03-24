@@ -2,6 +2,7 @@ package com.kotto.be.service.impl;
 
 import com.kotto.be.dto.CreateReservationRequest;
 import com.kotto.be.dto.CreateReservationResponse;
+import com.kotto.be.dto.ReservationResponseDto;
 import com.kotto.be.exception.ApiError;
 import com.kotto.be.model.Reservation;
 import com.kotto.be.model.User;
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ReservationServiceImpl implements ReservationService {
@@ -93,5 +96,25 @@ public class ReservationServiceImpl implements ReservationService {
 
     private boolean isValidStep(LocalTime t) {
         return t.getMinute() == 0 || t.getMinute() == 30;
+    }
+
+    @Override
+    public List<ReservationResponseDto> getUserReservations(String userEmail) {
+        User user = userRepository.findByEmail(userEmail)
+                .orElseThrow(() -> new ApiError(HttpStatus.UNAUTHORIZED, "Please login"));
+
+        List<Reservation> reservations = reservationRepository.findByUser_Id(user.getId());
+        
+        return reservations.stream().map(r -> new ReservationResponseDto(
+                r.getId(),
+                r.getName(),
+                r.getPhone(),
+                r.getDate(),
+                r.getStartTime(),
+                r.getEndTime(),
+                r.getGuests(),
+                r.getSeatingType(),
+                r.getStatus()
+        )).collect(Collectors.toList());
     }
 }
