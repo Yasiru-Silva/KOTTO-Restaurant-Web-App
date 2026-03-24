@@ -50,7 +50,7 @@ const Navbar = () => {
           {isUser && (
             <>
               <button className={styles.navButton} onClick={openCart}>Cart</button>
-              <button className={styles.navButton}>Profile</button>
+              <button className={styles.navButton} onClick={() => navigate("/profile")}>Profile</button>
             </>
           )}
 
