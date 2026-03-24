@@ -10,6 +10,7 @@ import ReservationPage from "./pages/ReservationPage"; // Reservation page compo
 import Login from "./pages/Login";              // Login page
 import Register from "./pages/Register";        // Register page
 import Logout from "./pages/Logout";            // Logout page
+import ProfilePage from "./pages/ProfilePage";
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -36,6 +37,9 @@ export default function App() {
         {/* Reservation page */}
         <Route path="/reservation" element={<ReservationPage />} />
         {/* Reservation UI should ONLY appear in this component */}
+
+        {/* Profile page */}
+        <Route path="/profile" element={<ProfilePage />} />
 
         {/* Authentication pages */}
         <Route path="/signin" element={<Login />} />
