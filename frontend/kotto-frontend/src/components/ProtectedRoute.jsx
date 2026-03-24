@@ -5,15 +5,16 @@ export default function ProtectedRoute({ children, allowedRoles }) {
   const { user } = useAuth();
 
   if (!user) {
-    // Not logged in → redirect to login
     return <Navigate to="/login" replace />;
   }
 
-  if (allowedRoles && !allowedRoles.includes(user.role)) {
-    // Logged in but role not allowed → optional redirect or message
-    return <div>You do not have permission to access this page.</div>;
+  const normalizedRole = user.role?.startsWith("ROLE_")
+    ? user.role.replace("ROLE_", "")
+    : user.role;
+
+  if (allowedRoles && !allowedRoles.includes(normalizedRole)) {
+    return <Navigate to="/" replace />;
   }
 
-  // Allowed → render children
   return children;
 }
