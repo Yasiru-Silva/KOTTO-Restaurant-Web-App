@@ -1,47 +1,71 @@
-import { NavLink } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import styles from "./Navbar.module.css";
 
-export default function Navbar() {
-  const { openCart, cartItems } = useCart();
-  const cartItemCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+const Navbar = () => {
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+  const { openCart } = useCart();
 
-  const scrollMenu = () => {
-    const section = document.getElementById("menu-section");
-    if (section) section.scrollIntoView({ behavior: "smooth" });
-  };
+  console.log("USER:", user);
+  console.log("ROLE:", user?.role);
+
+  const role = user?.role;
+
+  const isUser = role === "USER" || role === "ROLE_USER";
+  const isAdmin = role === "ADMIN" || role === "ROLE_ADMIN";
 
   return (
     <header className={styles.header}>
-      <div className={styles.inner}>
-        {/* Brand / Logo */}
-        <div className={styles.brand}>
-          <div className={styles.logo} aria-hidden="true">K</div>
+      <nav className={styles.inner}>
+
+        {/* LEFT */}
+        <div className={styles.nav}>
+          {isAdmin ? (
+            <>
+              <button className={styles.navButton}>Inventory</button>
+              <button className={styles.navButton}>Reservations</button>
+            </>
+          ) : (
+            <button className={styles.navButton} onClick={() => navigate("/reservation")}>Reservation</button>
+          )}
+        </div>
+
+        {/* CENTER */}
+        <div className={styles.brand} style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+          <div className={styles.logo}>K</div>
           <span className={styles.brandText}>KOTTO</span>
         </div>
 
-        {/* Navigation */}
-        <nav className={styles.nav} aria-label="Primary">
-          <NavLink
-            to="/"
-            className={({ isActive }) =>
-              isActive ? `${styles.navLink} ${styles.active}` : styles.navLink
-            }
-          >
-            Home
-          </NavLink>
+        {/* RIGHT */}
+        <div className={styles.nav}>
+          {!user && (
+            <>
+              <button className={styles.navButton} onClick={openCart}>Cart</button>
+              <button className={styles.navButton} onClick={() => navigate("/login")}>Login</button>
+            </>
+          )}
 
-          {/* Scroll to Menu */}
-          <button className={styles.navButton} onClick={scrollMenu}>
-            Menu
-          </button>
+          {isUser && (
+            <>
+              <button className={styles.navButton} onClick={openCart}>Cart</button>
+              <button className={styles.navButton}>Profile</button>
+            </>
+          )}
 
-          {/* Cart button */}
-          <button className={styles.navButton} onClick={openCart}>
-            Cart {cartItemCount > 0 && `(${cartItemCount})`}
-          </button>
-        </nav>
-      </div>
+          {isAdmin && (
+            <>
+              <button className={styles.navButton}>Add Item</button>
+              <button className={styles.navButton}>Orders</button>
+              <button className={styles.navButton} onClick={logout}>Logout</button>
+            </>
+          )}
+        </div>
+
+      </nav>
     </header>
   );
-}
+};
+
+export default Navbar;

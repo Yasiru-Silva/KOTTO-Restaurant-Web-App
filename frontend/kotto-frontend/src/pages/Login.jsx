@@ -3,9 +3,11 @@ import AuthLayout from "../components/AuthLayout";
 import { loginUser } from "../services/authService";
 import { validateLogin } from "../services/validators";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [touched, setTouched] = useState({ email: false, password: false });
@@ -37,6 +39,7 @@ export default function Login() {
       const data = await loginUser(form);
 
       localStorage.setItem("token", data.token);
+      login(data);
       navigate("/");
     } catch (err) {
       const status = err?.response?.status;
