@@ -1,27 +1,35 @@
 package com.kotto.be.controller;
 
+import com.kotto.be.dto.ReservationResponseDto;
+import com.kotto.be.service.ReservationService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/admin/reservations")
+@RequiredArgsConstructor
 public class AdminReservationController {
 
-    @GetMapping("/all")
+    private final ReservationService reservationService;
+
+    @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public String getAllReservations() {
-        return "ADMIN: list all reservations";
+    public List<ReservationResponseDto> getAllReservations() {
+        return reservationService.getAllReservations();
     }
 
-    @PutMapping("/approve")
+    @PutMapping("/{id}/approve")
     @PreAuthorize("hasRole('ADMIN')")
-    public String approveReservation() {
-        return "ADMIN: approve reservation";
+    public ReservationResponseDto approveReservation(@PathVariable Long id) {
+        return reservationService.approveReservation(id);
     }
 
-    @PutMapping("/reject")
+    @PutMapping("/{id}/reject")
     @PreAuthorize("hasRole('ADMIN')")
-    public String rejectReservation() {
-        return "ADMIN: reject reservation";
+    public ReservationResponseDto rejectReservation(@PathVariable Long id) {
+        return reservationService.rejectReservation(id);
     }
 }
