@@ -11,6 +11,7 @@ import Login from "./pages/Login";              // Login page
 import Register from "./pages/Register";        // Register page
 import Logout from "./pages/Logout";            // Logout page
 import ProfilePage from "./pages/ProfilePage";
+import CheckoutPage from "./pages/CheckoutPage"; // Checkout page
 
 import { AuthProvider } from "./context/AuthContext";
 
@@ -40,6 +41,9 @@ export default function App() {
 
         {/* Profile page */}
         <Route path="/profile" element={<ProfilePage />} />
+
+        {/* Checkout page */}
+        <Route path="/checkout" element={<CheckoutPage />} />
 
         {/* Authentication pages */}
         <Route path="/signin" element={<Login />} />
