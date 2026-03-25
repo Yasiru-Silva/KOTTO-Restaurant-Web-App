@@ -21,7 +21,10 @@ export const CartProvider = ({ children }) => {
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
-  const clearCart = () => setCartItems([]);
+  const clearCart = () => {
+    setCartItems([]);
+    localStorage.removeItem(CART_STORAGE_KEY);
+  };
 
   const addToCart = (item) => {
     setCartItems((prev) => {
