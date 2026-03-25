@@ -1,6 +1,7 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 const CartContext = createContext();
+const CART_STORAGE_KEY = "kotto_cart_items";
 
 export const CartProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
