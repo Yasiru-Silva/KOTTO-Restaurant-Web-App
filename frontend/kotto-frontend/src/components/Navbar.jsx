@@ -6,7 +6,8 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const { openCart } = useCart();
+  const { openCart, cartItems } = useCart();
+  const cartItemCount = cartItems?.reduce((total, item) => total + item.quantity, 0) || 0;
 
   console.log("USER:", user);
   console.log("ROLE:", user?.role);
@@ -42,14 +43,18 @@ const Navbar = () => {
         <div className={styles.nav}>
           {!user && (
             <>
-              <button className={styles.navButton} onClick={openCart}>Cart</button>
+              <button className={styles.navButton} onClick={openCart}>
+                Cart {cartItemCount > 0 && <span className={styles.cartBadge}>{cartItemCount}</span>}
+              </button>
               <button className={styles.navButton} onClick={() => navigate("/login")}>Login</button>
             </>
           )}
 
           {isUser && (
             <>
-              <button className={styles.navButton} onClick={openCart}>Cart</button>
+              <button className={styles.navButton} onClick={openCart}>
+                Cart {cartItemCount > 0 && <span className={styles.cartBadge}>{cartItemCount}</span>}
+              </button>
               <button className={styles.navButton} onClick={() => navigate("/profile")}>Profile</button>
             </>
           )}

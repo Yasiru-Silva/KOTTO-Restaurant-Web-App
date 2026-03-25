@@ -5,6 +5,7 @@ import MenuPage from "./pages/MenuPage";         // Menu page (home page)
 import Footer from "./components/Footer";        // Global footer shown on every page
 import CartDrawer from "./components/CartDrawer";// Global cart drawer
 import { CartProvider } from "./context/CartContext";
+import { ToastProvider } from "./context/ToastContext";
 
 import ReservationPage from "./pages/ReservationPage"; // Reservation page component
 import Login from "./pages/Login";              // Login page
@@ -18,7 +19,8 @@ import { AuthProvider } from "./context/AuthContext";
 export default function App() {
   return (
     <AuthProvider>
-      <CartProvider>
+      <ToastProvider>
+        <CartProvider>
 
       {/* Navbar appears on ALL pages */}
       {/* If the mysterious reservation UI appears everywhere, 
@@ -72,6 +74,7 @@ export default function App() {
       <CartDrawer />
 
     </CartProvider>
+    </ToastProvider>
     </AuthProvider>
   );
 }

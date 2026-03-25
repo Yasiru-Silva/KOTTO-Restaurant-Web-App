@@ -2,11 +2,32 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import styles from "./CheckoutPage.module.css";
+import OrderConfirmationModal from "../components/OrderConfirmationModal";
+import { submitOrder } from "../services/orderService";
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
-  const { cartItems, subtotal } = useCart();
+  const { cartItems, subtotal, clearCart } = useCart();
   const [orderType, setOrderType] = useState("delivery"); // 'delivery' or 'pickup'
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [orderConfirm, setOrderConfirm] = useState({ isOpen: false, orderId: null });
+
+  const deliveryFee = orderType === "delivery" ? 300 : 0;
+  const total = subtotal + deliveryFee;
+
+  const handlePlaceOrder = async () => {
+    setIsSubmitting(true);
+    try {
+      const result = await submitOrder(cartItems, { orderType, total });
+      if (result.success) {
+        setOrderConfirm({ isOpen: true, orderId: result.orderId });
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const handleOrderTypeChange = (type) => {
     setOrderType(type);
@@ -27,8 +48,7 @@ export default function CheckoutPage() {
     );
   }
 
-  const deliveryFee = orderType === "delivery" ? 300 : 0;
-  const total = subtotal + deliveryFee;
+
 
   return (
     <div className={styles.checkoutContainer}>
@@ -105,9 +125,14 @@ export default function CheckoutPage() {
             </div>
           </div>
 
-          {/* Placeholder for future backend integration */}
-          <button className={styles.placeOrderButton} onClick={() => alert("Order Placed Successfully! (Placeholder)")}>
-            Place Order
+          {/* Process order with mock backend call */}
+          <button 
+            className={styles.placeOrderButton} 
+            onClick={handlePlaceOrder}
+            disabled={isSubmitting}
+            style={{ opacity: isSubmitting ? 0.7 : 1 }}
+          >
+            {isSubmitting ? "Processing..." : "Place Order"}
           </button>
           
           <button className={styles.continueShoppingButton} onClick={() => navigate("/")}>
@@ -115,6 +140,11 @@ export default function CheckoutPage() {
           </button>
         </div>
       </div>
+      <OrderConfirmationModal 
+        isOpen={orderConfirm.isOpen} 
+        orderId={orderConfirm.orderId}
+        onClose={() => clearCart()} 
+      />
     </div>
   );
 }
