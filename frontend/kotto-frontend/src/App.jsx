@@ -5,6 +5,7 @@ import MenuPage from "./pages/MenuPage";
 import Footer from "./components/Footer";
 import CartDrawer from "./components/CartDrawer";
 import { CartProvider } from "./context/CartContext";
+import { ToastProvider } from "./context/ToastContext";
 
 import ReservationPage from "./pages/ReservationPage";
 import Login from "./pages/Login";

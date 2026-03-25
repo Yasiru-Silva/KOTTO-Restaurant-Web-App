@@ -1,6 +1,8 @@
 import { useCart } from "../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 export default function CartDrawer() {
+  const navigate = useNavigate();
   const {
     isOpen,
     closeCart,
@@ -264,6 +266,10 @@ export default function CartDrawer() {
             Taxes and delivery fees calculated at checkout.
           </p>
           <button
+            onClick={() => {
+              closeCart();
+              navigate("/checkout");
+            }}
             style={{
               width: "100%",
               padding: "10px 0",

@@ -6,7 +6,8 @@ import styles from "./Navbar.module.css";
 const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const { openCart } = useCart();
+  const { openCart, cartItems } = useCart();
+  const cartItemCount = cartItems?.reduce((total, item) => total + item.quantity, 0) || 0;
 
   const role = user?.role;
   const isUser = role === "USER" || role === "ROLE_USER";

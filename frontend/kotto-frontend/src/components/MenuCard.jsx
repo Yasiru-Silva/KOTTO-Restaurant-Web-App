@@ -1,13 +1,14 @@
 import { useCart } from "../context/CartContext";
+import { useToast } from "../context/ToastContext";
 import "../styles/MenuCard.css";
 
 function MenuCard({ item }) {
   const { addToCart } = useCart();
+  const { addToast } = useToast();
 
   const handleAddToCart = () => {
     addToCart(item);
-    // Optionally, still show an alert or open the cart
-    alert(item.name + " added to cart!");
+    addToast(`${item.name} added to cart!`, "success");
   };
 
   return (
