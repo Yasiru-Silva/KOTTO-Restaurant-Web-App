@@ -15,6 +15,10 @@ export const CartProvider = ({ children }) => {
     }
   });
 
+  useEffect(() => {
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
+
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
   const clearCart = () => setCartItems([]);
