@@ -11,14 +11,21 @@ export default function CheckoutPage() {
   const [orderType, setOrderType] = useState("delivery"); // 'delivery' or 'pickup'
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderConfirm, setOrderConfirm] = useState({ isOpen: false, orderId: null });
+  const [deliveryAddress, setDeliveryAddress] = useState("");
+  const [addressError, setAddressError] = useState(false);
 
   const deliveryFee = orderType === "delivery" ? 300 : 0;
   const total = subtotal + deliveryFee;
 
   const handlePlaceOrder = async () => {
+    if (orderType === "delivery" && deliveryAddress.trim() === "") {
+      setAddressError(true);
+      return;
+    }
+
     setIsSubmitting(true);
     try {
-      const result = await submitOrder(cartItems, { orderType, total });
+      const result = await submitOrder(cartItems, { orderType, deliveryAddress, total });
       if (result.success) {
         setOrderConfirm({ isOpen: true, orderId: result.orderId });
       }
@@ -96,9 +103,23 @@ export default function CheckoutPage() {
               </button>
             </div>
             {orderType === "delivery" && (
-              <p className={styles.deliveryNote}>
-                Delivery typically takes 30-45 minutes.
-              </p>
+              <div className={styles.addressWrapper}>
+                <label className={styles.addressLabel}>Delivery Address *</label>
+                <textarea 
+                  className={`${styles.addressInput} ${addressError ? styles.inputError : ""}`}
+                  placeholder="Enter your full delivery address..."
+                  value={deliveryAddress}
+                  onChange={(e) => { 
+                    setDeliveryAddress(e.target.value); 
+                    if (addressError) setAddressError(false); 
+                  }}
+                  rows={3}
+                />
+                {addressError && <span className={styles.errorMessage}>Please provide a delivery address.</span>}
+                <p className={styles.deliveryNote}>
+                  Delivery typically takes 30-45 minutes.
+                </p>
+              </div>
             )}
             {orderType === "pickup" && (
               <p className={styles.deliveryNote}>
