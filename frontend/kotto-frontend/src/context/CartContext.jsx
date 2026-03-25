@@ -5,7 +5,15 @@ const CART_STORAGE_KEY = "kotto_cart_items";
 
 export const CartProvider = ({ children }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState(() => {
+    try {
+      const saved = localStorage.getItem(CART_STORAGE_KEY);
+      return saved ? JSON.parse(saved) : [];
+    } catch (e) {
+      console.error("Failed to parse cart from local storage", e);
+      return [];
+    }
+  });
 
   const openCart = () => setIsOpen(true);
   const closeCart = () => setIsOpen(false);
