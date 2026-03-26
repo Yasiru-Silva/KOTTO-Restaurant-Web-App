@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../services/api";
 import PageShell from "../components/PageShell";
+import styles from "./AdminReservationsPage.module.css";
 
 export default function AdminReservationsPage() {
   const [reservations, setReservations] = useState([]);
@@ -51,13 +52,13 @@ export default function AdminReservationsPage() {
 
   return (
     <PageShell>
-      <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "32px 20px" }}>
-        <h1 style={{ marginBottom: "20px" }}>Admin Reservation Management</h1>
+      <main className={styles.container}>
+        <h1 className={styles.title}>Admin Reservation Management</h1>
 
-        {loading && <p>Loading reservations...</p>}
+        {loading && <p className={styles.loading}>Loading reservations...</p>}
 
         {!loading && error && (
-          <p style={{ color: "red" }}>{error}</p>
+          <p className={styles.error}>{error}</p>
         )}
 
         {!loading && !error && reservations.length === 0 && (
@@ -65,12 +66,10 @@ export default function AdminReservationsPage() {
         )}
 
         {!loading && !error && reservations.length > 0 && (
-          <div style={{ overflowX: "auto" }}>
+          <div className={styles.tableWrapper}>
+            <div className={styles.tableScroll}>
             <table
-              border="1"
-              cellPadding="10"
-              cellSpacing="0"
-              style={{ width: "100%", borderCollapse: "collapse", background: "#fff" }}
+              className={styles.table}
             >
               <thead>
                 <tr>
@@ -98,12 +97,12 @@ export default function AdminReservationsPage() {
                     <td>{r.endTime}</td>
                     <td>{r.guests}</td>
                     <td>{r.seatingType}</td>
-                    <td>{r.status}</td>
+                    <td className={styles.status}>{r.status}</td>
                     <td>
                       <button
                         onClick={() => handleApprove(r.id)}
                         disabled={actionLoadingId === r.id || r.status !== "PENDING"}
-                        style={{ marginRight: "8px" }}
+                        className={`${styles.actionButton} ${styles.approve}`}
                       >
                         {actionLoadingId === r.id ? "Working..." : "Approve"}
                       </button>
@@ -111,6 +110,7 @@ export default function AdminReservationsPage() {
                       <button
                         onClick={() => handleReject(r.id)}
                         disabled={actionLoadingId === r.id || r.status !== "PENDING"}
+                        className={`${styles.actionButton} ${styles.reject}`}
                       >
                         {actionLoadingId === r.id ? "Working..." : "Reject"}
                       </button>
@@ -119,6 +119,7 @@ export default function AdminReservationsPage() {
                 ))}
               </tbody>
             </table>
+            </div>
           </div>
         )}
       </main>

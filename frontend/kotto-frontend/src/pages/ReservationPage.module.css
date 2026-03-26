@@ -118,10 +118,20 @@
   color: var(--text-main);
   outline: none;
   transition: all .2s ease;
+  /* Helps some browsers render native select dropdown UI in dark mode. */
+  color-scheme: dark;
 }
 
 .select {
   padding: 14px 12px;
+  min-height: 48px;
+  font-weight: 600;
+}
+
+/* Best-effort styling for option panel (native select behavior varies by browser). */
+.select option {
+  background: var(--surface-color-light);
+  color: var(--text-main);
 }
 
 .input:focus,
