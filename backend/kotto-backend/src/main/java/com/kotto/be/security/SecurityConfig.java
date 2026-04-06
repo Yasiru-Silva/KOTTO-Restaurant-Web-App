@@ -13,6 +13,7 @@ import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -63,8 +64,11 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         // public auth endpoints
                         .requestMatchers("/api/auth/**").permitAll()
-                        // public menu endpoints
+                        // public menu & catalog
                         .requestMatchers("/api/menu/**").permitAll()
+                        .requestMatchers("/api/categories/**").permitAll()
+                        .requestMatchers("/api/moods/**").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/uploads/**").permitAll()
                         // everything else requires JWT
                         .anyRequest().authenticated()
                 )
