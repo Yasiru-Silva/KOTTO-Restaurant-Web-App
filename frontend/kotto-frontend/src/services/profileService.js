@@ -14,8 +14,8 @@ export const getUserReservations = async () => {
 // Fetch user's orders (mocked for now as backend is incomplete)
 export const getUserOrders = async () => {
     try {
-        // Mock data or empty array if backend endpoint doesn't exist yet
-        return [];
+        const response = await api.get("/api/orders/my-orders");
+        return response.data;
     } catch (error) {
         console.error("Error fetching user orders:", error);
         return [];
