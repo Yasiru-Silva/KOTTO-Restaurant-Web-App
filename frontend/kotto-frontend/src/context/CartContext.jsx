@@ -47,7 +47,7 @@ export const CartProvider = ({ children }) => {
       prev
         .map((item) =>
           item.id === id
-            ? { ...item, quantity: item.quantity + amount }
+            ? { ...item, quantity: Math.max(0, item.quantity + amount) }
             : item
         )
         .filter((item) => item.quantity > 0)

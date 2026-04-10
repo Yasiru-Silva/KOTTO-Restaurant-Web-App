@@ -40,6 +40,9 @@ application-prod.properties
 *.log
 logs/
 
+# Local uploaded menu images
+uploads/
+
 .DS_Store
 Thumbs.db
 

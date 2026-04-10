@@ -58,10 +58,23 @@ export default function App() {
               element={
                 <ProtectedRoute allowedRoles={["ADMIN"]}>
                   <InventoryPage />
+              path="/admin/add-item"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <AdminAddItemPage />
                 </ProtectedRoute>
               }
             />
 
+            <Route
+              path="/admin/edit-item/:id"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <AdminEditItemPage />
+                </ProtectedRoute>
+              }
+            />
+ 
             <Route path="/signin" element={<Login />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Register />} />
