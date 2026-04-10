@@ -13,8 +13,7 @@ import Register from "./pages/Register";
 import Logout from "./pages/Logout";
 import ProfilePage from "./pages/ProfilePage";
 import AdminReservationsPage from "./pages/AdminReservationsPage";
-import AdminAddItemPage from "./pages/AdminAddItemPage";
-import AdminEditItemPage from "./pages/AdminEditItemPage";
+import InventoryPage from "./pages/InventoryPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CheckoutPage from "./pages/CheckoutPage";
 
@@ -26,14 +25,14 @@ export default function App() {
       <ToastProvider>
         <CartProvider>
           <Navbar />
- 
+
           <Routes>
             <Route path="/menu" element={<Navigate to="/" replace />} />
- 
+
             <Route path="/" element={<MenuPage />} />
- 
+
             <Route path="/reservation" element={<ReservationPage />} />
- 
+
             <Route path="/checkout" element={<CheckoutPage />} />
 
             <Route
@@ -44,7 +43,7 @@ export default function App() {
                 </ProtectedRoute>
               }
             />
- 
+
             <Route
               path="/admin/reservations"
               element={
@@ -55,6 +54,10 @@ export default function App() {
             />
 
             <Route
+              path="/admin/inventory"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <InventoryPage />
               path="/admin/add-item"
               element={
                 <ProtectedRoute allowedRoles={["ADMIN"]}>
@@ -77,10 +80,10 @@ export default function App() {
             <Route path="/signup" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
             <Route path="/singin" element={<Login />} />
- 
+
             <Route path="*" element={<div style={{ padding: 24 }}>NOT FOUND</div>} />
           </Routes>
- 
+
           <Footer />
           <CartDrawer />
         </CartProvider>

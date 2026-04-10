@@ -24,7 +24,12 @@ const Navbar = () => {
         <div className={styles.nav}>
           {isAdmin ? (
             <>
-              <button className={styles.navButton}>Inventory</button>
+              <button
+                className={styles.navButton}
+                onClick={() => navigate("/admin/inventory")}
+              >
+                Inventory
+              </button>
               <button
                 className={styles.navButton}
                 onClick={() => navigate("/admin/reservations")}
@@ -55,7 +60,7 @@ const Navbar = () => {
           {!user && (
             <>
               <button className={styles.navButton} onClick={openCart}>
-                Cart
+                Cart {cartItemCount > 0 ? `(${cartItemCount})` : ""}
               </button>
               <button
                 className={styles.navButton}
@@ -69,7 +74,7 @@ const Navbar = () => {
           {isUser && (
             <>
               <button className={styles.navButton} onClick={openCart}>
-                Cart
+                Cart {cartItemCount > 0 ? `(${cartItemCount})` : ""}
               </button>
               <button
                 className={styles.navButton}
@@ -87,6 +92,9 @@ const Navbar = () => {
             <>
               <button
                 className={styles.navButton}
+                onClick={() => navigate("/admin/inventory")}
+              >
+                Manage Stock
                 onClick={() => navigate("/admin/add-item")}
               >
                 Add Item
