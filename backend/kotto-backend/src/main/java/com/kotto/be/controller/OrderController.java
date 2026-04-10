@@ -34,6 +34,18 @@ public class OrderController {
         return ResponseEntity.ok(orderService.getUserOrders(user.getId()));
     }
 
+    @GetMapping("/all")
+    public ResponseEntity<List<OrderDTO>> getAllOrders(Authentication authentication) {
+        if (authentication == null || authentication.getName() == null) {
+            return ResponseEntity.status(401).build();
+        }
+        User user = userRepository.findByEmail(authentication.getName()).orElse(null);
+        if (user == null || user.getRole() != com.kotto.be.model.Role.ADMIN) {
+            return ResponseEntity.status(403).build();
+        }
+        return ResponseEntity.ok(orderService.getAllOrders());
+    }
+
     @org.springframework.web.bind.annotation.PostMapping
     public ResponseEntity<?> placeOrder(Authentication authentication, @org.springframework.web.bind.annotation.RequestBody com.kotto.be.dto.OrderRequestDTO request) {
         if (authentication == null || authentication.getName() == null) {

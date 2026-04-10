@@ -39,4 +39,9 @@ public class CategoryService {
         c = foodCategoryRepository.save(c);
         return new CategoryDTO(c.getId(), c.getName());
     }
+
+    @Transactional
+    public void delete(Long id) {
+        foodCategoryRepository.deleteById(id);
+    }
 }

@@ -14,6 +14,9 @@ import Logout from "./pages/Logout";
 import ProfilePage from "./pages/ProfilePage";
 import AdminReservationsPage from "./pages/AdminReservationsPage";
 import InventoryPage from "./pages/InventoryPage";
+import AdminAddItemPage from "./pages/AdminAddItemPage";
+import AdminEditItemPage from "./pages/AdminEditItemPage";
+import AdminOrdersPage from "./pages/admin/AdminOrdersPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import CheckoutPage from "./pages/CheckoutPage";
 
@@ -58,6 +61,20 @@ export default function App() {
               element={
                 <ProtectedRoute allowedRoles={["ADMIN"]}>
                   <InventoryPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/admin/orders"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <AdminOrdersPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
               path="/admin/add-item"
               element={
                 <ProtectedRoute allowedRoles={["ADMIN"]}>

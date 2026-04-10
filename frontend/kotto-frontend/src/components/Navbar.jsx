@@ -26,9 +26,9 @@ const Navbar = () => {
             <>
               <button
                 className={styles.navButton}
-                onClick={() => navigate("/admin/inventory")}
+                onClick={() => navigate("/admin/orders")}
               >
-                Inventory
+                Orders
               </button>
               <button
                 className={styles.navButton}
@@ -92,14 +92,16 @@ const Navbar = () => {
             <>
               <button
                 className={styles.navButton}
-                onClick={() => navigate("/admin/inventory")}
-              >
-                Manage Stock
                 onClick={() => navigate("/admin/add-item")}
               >
                 Add Item
               </button>
-              <button className={styles.navButton}>Orders</button>
+              <button
+                className={styles.navButton}
+                onClick={() => navigate("/admin/inventory")}
+              >
+                Inventory
+              </button>
               <button className={styles.navButton} onClick={handleLogout}>
                 Logout
               </button>

@@ -13,4 +13,7 @@ public class OrderDTO {
     private Long id;
     private Double total;
     private String status;
+    private String orderType;
+    private String deliveryAddress;
+    private String userName;
 }

@@ -4,6 +4,8 @@ import {
   createCategory,
   createMenuItem,
   createMood,
+  deleteCategory,
+  deleteMood,
 } from "../services/adminMenuService";
 import { useToast } from "../context/ToastContext";
 import styles from "./AdminAddItemPage.module.css";
@@ -86,6 +88,44 @@ export default function AdminAddItemPage() {
       addToast(`Mood "${created.name}" added.`, "success");
     } catch (err) {
       const msg = err?.response?.data?.message || "Could not add mood.";
+      addToast(msg, "error");
+    }
+  };
+
+  const handleDeleteCategory = async (cat) => {
+    const ok = window.confirm(`Delete category "${cat.name}"? This can't be undone.`);
+    if (!ok) return;
+    try {
+      await deleteCategory(cat.id);
+      setCategories((prev) => {
+        const remaining = prev.filter((c) => c.id !== cat.id);
+        setCategoryId((prevSelected) => {
+          if (String(cat.id) !== String(prevSelected)) return prevSelected;
+          return remaining.length ? String(remaining[0].id) : "";
+        });
+        return remaining;
+      });
+      addToast(`Category "${cat.name}" deleted.`, "success");
+    } catch (err) {
+      const msg = err?.response?.data?.message || "Could not delete category.";
+      addToast(msg, "error");
+    }
+  };
+
+  const handleDeleteMood = async (mood) => {
+    const ok = window.confirm(`Delete mood "${mood.name}"? This can't be undone.`);
+    if (!ok) return;
+    try {
+      await deleteMood(mood.id);
+      setMoods((prev) => prev.filter((m) => m.id !== mood.id));
+      setSelectedMoodIds((prev) => {
+        const next = new Set(prev);
+        next.delete(mood.id);
+        return next;
+      });
+      addToast(`Mood "${mood.name}" deleted.`, "success");
+    } catch (err) {
+      const msg = err?.response?.data?.message || "Could not delete mood.";
       addToast(msg, "error");
     }
   };
@@ -224,6 +264,20 @@ export default function AdminAddItemPage() {
               ))}
             </select>
           </div>
+          <div className={styles.categoryGrid}>
+            {categories.map((c) => (
+              <div key={c.id} className={styles.categoryChip}>
+                <div className={styles.categoryName}>{c.name}</div>
+                <button
+                  type="button"
+                  className={styles.chipDelete}
+                  onClick={() => handleDeleteCategory(c)}
+                >
+                  Delete
+                </button>
+              </div>
+            ))}
+          </div>
           <div className={styles.inlineAdd}>
             <input
               value={newCategoryName}
@@ -241,12 +295,25 @@ export default function AdminAddItemPage() {
           <div className={styles.moodGrid}>
             {moods.map((m) => (
               <label key={m.id} className={styles.moodChip}>
-                <input
-                  type="checkbox"
-                  checked={selectedMoodIds.has(m.id)}
-                  onChange={() => toggleMood(m.id)}
-                />
-                <span>{m.name}</span>
+                <span className={styles.moodChipTop}>
+                  <input
+                    type="checkbox"
+                    checked={selectedMoodIds.has(m.id)}
+                    onChange={() => toggleMood(m.id)}
+                  />
+                  <span>{m.name}</span>
+                </span>
+                <button
+                  type="button"
+                  className={styles.chipDelete}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    handleDeleteMood(m);
+                  }}
+                >
+                  Delete
+                </button>
               </label>
             ))}
           </div>

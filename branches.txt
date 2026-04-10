@@ -1,0 +1,27 @@
+﻿  KRWA-21-Logout
+  KRWA-26-Profile-Page-UI
+  KRWA-27-Navbar-auth-state-switching
+  KRWA-50-Registration
+  KRWA-52-RBAC-enforcement
+* dev
+  main
+  remotes/origin/HEAD -> origin/main
+  remotes/origin/KRWA-134-Delivery-address-required
+  remotes/origin/KRWA-136-Order-confirmation-popup
+  remotes/origin/KRWA-144-Admin-view-reservations
+  remotes/origin/KRWA-145-Approve-reservation
+  remotes/origin/KRWA-146-Reject-reservation
+  remotes/origin/KRWA-147-Restrict-to-ADMIN
+  remotes/origin/KRWA-21-Logout
+  remotes/origin/KRWA-24-Fetch-menu-items
+  remotes/origin/KRWA-25-Backend-seed-data
+  remotes/origin/KRWA-26-Profile-Page-UI
+  remotes/origin/KRWA-27-Navbar-auth-state-switching
+  remotes/origin/KRWA-30/53/54-cart-drawer-ui/logic/calc
+  remotes/origin/KRWA-37-Persist-cart-across-refresh
+  remotes/origin/KRWA-50-Registration
+  remotes/origin/KRWA-52-RBAC-enforcement
+  remotes/origin/KRWA-57-Create-reservation-API
+  remotes/origin/KRWA-58-Checkout-UI
+  remotes/origin/dev
+  remotes/origin/main

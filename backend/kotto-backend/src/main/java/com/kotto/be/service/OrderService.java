@@ -23,6 +23,22 @@ public class OrderService {
                 .id(order.getId())
                 .total(order.getTotal())
                 .status(order.getStatus())
+                .orderType(order.getOrderType())
+                .deliveryAddress(order.getDeliveryAddress())
+                .userName(order.getUser() != null ? order.getUser().getName() : "")
+                .build())
+            .collect(Collectors.toList());
+    }
+
+    public List<OrderDTO> getAllOrders() {
+        return orderRepository.findAll().stream()
+            .map(order -> OrderDTO.builder()
+                .id(order.getId())
+                .total(order.getTotal())
+                .status(order.getStatus())
+                .orderType(order.getOrderType())
+                .deliveryAddress(order.getDeliveryAddress())
+                .userName(order.getUser() != null ? order.getUser().getName() : "")
                 .build())
             .collect(Collectors.toList());
     }

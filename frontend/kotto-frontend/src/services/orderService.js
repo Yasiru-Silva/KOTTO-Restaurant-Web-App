@@ -24,3 +24,13 @@ export const submitOrder = async (cartItems, orderDetails) => {
     return { success: false, message: "Failed to place order." };
   }
 };
+
+export const getAllOrders = async () => {
+  try {
+    const response = await api.get("/api/orders/all");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching all orders:", error);
+    return [];
+  }
+};

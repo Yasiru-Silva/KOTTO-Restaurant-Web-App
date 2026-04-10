@@ -38,4 +38,9 @@ public class MoodService {
         m = moodRepository.save(m);
         return new MoodDTO(m.getId(), m.getName());
     }
+
+    @Transactional
+    public void delete(Long id) {
+        moodRepository.deleteById(id);
+    }
 }

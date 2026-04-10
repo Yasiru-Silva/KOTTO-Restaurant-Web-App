@@ -70,3 +70,11 @@ export async function createMood(name) {
   const res = await api.post("/api/admin/moods", { name });
   return res.data;
 }
+
+export async function deleteCategory(id) {
+  await api.delete(`/api/admin/categories/${id}`);
+}
+
+export async function deleteMood(id) {
+  await api.delete(`/api/admin/moods/${id}`);
+}

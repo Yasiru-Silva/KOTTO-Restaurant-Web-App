@@ -33,4 +33,18 @@ public class AdminCatalogController {
         String name = body != null ? body.get("name") : null;
         return ResponseEntity.ok(moodService.create(name));
     }
+
+    @DeleteMapping("/categories/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {
+        categoryService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @DeleteMapping("/moods/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<Void> deleteMood(@PathVariable Long id) {
+        moodService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }

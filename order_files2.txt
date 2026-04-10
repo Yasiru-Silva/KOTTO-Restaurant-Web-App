@@ -1,0 +1,3 @@
+﻿C:\KOTTO\KOTTO-Restaurant-Web-App\frontend\kotto-frontend\src\components\OrderConfirmationModal.jsx
+C:\KOTTO\KOTTO-Restaurant-Web-App\frontend\kotto-frontend\src\components\OrderConfirmationModal.module.css
+C:\KOTTO\KOTTO-Restaurant-Web-App\frontend\kotto-frontend\src\services\orderService.js

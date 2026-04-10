@@ -114,14 +114,65 @@
 }
 
 .moodChip {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
   border-radius: 999px;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(255, 255, 255, 0.04);
   cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.moodChipTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chipDelete {
+  align-self: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(220, 20, 60, 0.08);
+  color: #fda4af;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.chipDelete:hover {
+  background: rgba(220, 20, 60, 0.14);
+}
+
+.chipDelete:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.categoryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.categoryChip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.categoryName {
+  font-weight: 700;
   font-size: 0.9rem;
   color: var(--text-main);
 }
