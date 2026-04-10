@@ -7,7 +7,7 @@ import { submitOrder } from "../services/orderService";
 
 export default function CheckoutPage() {
   const navigate = useNavigate();
-  const { cartItems, subtotal, clearCart } = useCart();
+  const { cartItems, subtotal, clearCart, updateQuantity, removeItem } = useCart();
   const [orderType, setOrderType] = useState("delivery"); // 'delivery' or 'pickup'
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderConfirm, setOrderConfirm] = useState({ isOpen: false, orderId: null });
@@ -73,6 +73,21 @@ export default function CheckoutPage() {
                   <div className={styles.itemName}>{item.name}</div>
                   <div className={styles.itemDetails}>
                     LKR {item.price.toLocaleString()} × {item.quantity}
+                  </div>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginTop: '8px' }}>
+                    <button 
+                      onClick={() => updateQuantity(item.id, -1)}
+                      style={{ background: 'var(--surface-color-light)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '50%', width: '24px', height: '24px', cursor: 'pointer', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                    >−</button>
+                    <span style={{ fontSize: '0.9rem', width: '20px', textAlign: 'center' }}>{item.quantity}</span>
+                    <button 
+                      onClick={() => updateQuantity(item.id, 1)}
+                      style={{ background: 'var(--surface-color-light)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '50%', width: '24px', height: '24px', cursor: 'pointer', color: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
+                    >+</button>
+                    <button 
+                      onClick={() => removeItem(item.id)}
+                      style={{ background: 'transparent', border: '1px solid rgba(248,113,113,0.7)', color: '#fecaca', borderRadius: '999px', padding: '2px 8px', cursor: 'pointer', fontSize: '0.75rem', marginLeft: 'auto' }}
+                    >Remove</button>
                   </div>
                 </div>
                 <div className={styles.itemTotal}>
