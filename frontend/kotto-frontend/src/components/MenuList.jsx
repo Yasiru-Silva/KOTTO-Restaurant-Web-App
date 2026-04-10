@@ -1,18 +1,26 @@
 import { useEffect, useState } from "react";
 import MenuCard from "./MenuCard";
+import { useAuth } from "../context/AuthContext";
 import { getMenu } from "../services/menuService";
 import "../styles/MenuPage.css";
 
-function MenuList() {
+function MenuList({ moodId, categoryId, refreshKey, onMenuChanged }) {
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { user } = useAuth();
+
+  const normalizedRole = user?.role?.startsWith("ROLE_")
+    ? user.role.replace("ROLE_", "")
+    : user?.role;
+  const isAdmin = normalizedRole === "ADMIN";
 
   useEffect(() => {
     const fetchMenu = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        const data = await getMenu();
-        // Assuming the backend returns an array of menu items
+        const data = await getMenu(moodId, categoryId);
         setMenu(data);
       } catch (err) {
         console.error("Failed to fetch menu:", err);
@@ -23,24 +31,59 @@ function MenuList() {
     };
 
     fetchMenu();
-  }, []);
+  }, [moodId, categoryId, refreshKey]);
 
   if (loading) {
-    return <div style={{ textAlign: "center", padding: "40px", color: "var(--text-muted)" }}>Loading delicious recipes...</div>;
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "40px",
+          color: "var(--text-muted)",
+        }}
+      >
+        Loading delicious recipes...
+      </div>
+    );
   }
 
   if (error) {
-    return <div style={{ textAlign: "center", padding: "40px", color: "var(--danger)" }}>{error}</div>;
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "40px",
+          color: "var(--danger)",
+        }}
+      >
+        {error}
+      </div>
+    );
   }
 
   if (menu.length === 0) {
-    return <div style={{ textAlign: "center", padding: "40px", color: "var(--text-muted)" }}>No items available at the moment.</div>;
+    return (
+      <div
+        style={{
+          textAlign: "center",
+          padding: "40px",
+          color: "var(--text-muted)",
+        }}
+      >
+        No dishes match these filters. Try another mood or category.
+      </div>
+    );
   }
 
   return (
     <div className="menu-grid">
       {menu.map((item) => (
-        <MenuCard key={item.id} item={item} />
+        <MenuCard
+          key={item.id}
+          item={item}
+          isAdmin={isAdmin}
+          onMenuChanged={onMenuChanged}
+        />
       ))}
     </div>
   );

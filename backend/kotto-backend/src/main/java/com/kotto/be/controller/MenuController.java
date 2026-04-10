@@ -11,14 +11,16 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/menu")
 @RequiredArgsConstructor
-@CrossOrigin(origins = "*") // allow frontend calls from different domain
+@CrossOrigin(origins = "*")
 public class MenuController {
 
     private final MenuService menuService;
 
     @GetMapping
-    public ResponseEntity<List<MenuDTO>> getMenuItems() {
-        List<MenuDTO> menuItems = menuService.getAllMenuItems();
-        return ResponseEntity.ok(menuItems);
+    public ResponseEntity<List<MenuDTO>> getMenuItems(
+            @RequestParam(required = false) Long moodId,
+            @RequestParam(required = false) Long categoryId
+    ) {
+        return ResponseEntity.ok(menuService.getAllMenuItems(moodId, categoryId));
     }
 }

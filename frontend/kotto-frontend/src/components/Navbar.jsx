@@ -85,7 +85,12 @@ const Navbar = () => {
 
           {isAdmin && (
             <>
-              <button className={styles.navButton}>Add Item</button>
+              <button
+                className={styles.navButton}
+                onClick={() => navigate("/admin/add-item")}
+              >
+                Add Item
+              </button>
               <button className={styles.navButton}>Orders</button>
               <button className={styles.navButton} onClick={handleLogout}>
                 Logout
