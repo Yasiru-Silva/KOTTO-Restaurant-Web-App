@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllOrders } from "../../services/orderService";
+import { getAllOrders, updateOrderStatus } from "../../services/orderService";
 import styles from "./AdminOrdersPage.module.css";
 
 const AdminOrdersPage = () => {
@@ -20,6 +20,18 @@ const AdminOrdersPage = () => {
     fetchOrders();
   }, []);
 
+  const handleStatusChange = async (orderId, newStatus) => {
+    const result = await updateOrderStatus(orderId, newStatus);
+    if (result.success) {
+      setOrders(prevOrders => prevOrders.map(order => 
+        order.id === orderId ? { ...order, status: newStatus } : order
+      ));
+    } else {
+      alert("Failed to update status.");
+    }
+  };
+
+
   if (loading) {
     return (
       <div className={styles.loadingContainer}>
@@ -39,9 +51,16 @@ const AdminOrdersPage = () => {
             <div key={order.id} className={styles.orderCard}>
               <div className={styles.orderHeader}>
                 <span className={styles.orderId}>Order #{order.id}</span>
-                <span className={`${styles.statusBadge} ${styles[order.status.toLowerCase()] || ""}`}>
-                  {order.status}
-                </span>
+                <select
+                  className={`${styles.statusBadge} ${styles[order.status.toLowerCase()] || ""}`}
+                  value={order.status}
+                  onChange={(e) => handleStatusChange(order.id, e.target.value)}
+                  disabled={order.status === "READY"}
+                >
+                  <option value="CONFIRMED">CONFIRMED</option>
+                  <option value="PREPARING">PREPARING</option>
+                  <option value="READY">READY</option>
+                </select>
               </div>
               <div className={styles.orderDetails}>
                 <p><strong>Customer:</strong> {order.userName}</p>

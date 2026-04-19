@@ -59,4 +59,44 @@ public class OrderController {
         com.kotto.be.model.Order createdOrder = orderService.placeOrder(user, request);
         return ResponseEntity.ok(java.util.Map.of("success", true, "orderId", createdOrder.getId()));
     }
+
+    @org.springframework.web.bind.annotation.PutMapping("/{id}/status")
+    public ResponseEntity<?> updateOrderStatus(Authentication authentication, @org.springframework.web.bind.annotation.PathVariable Long id, @org.springframework.web.bind.annotation.RequestBody java.util.Map<String, String> request) {
+        if (authentication == null || authentication.getName() == null) {
+            return ResponseEntity.status(401).build();
+        }
+        User user = userRepository.findByEmail(authentication.getName()).orElse(null);
+        if (user == null || user.getRole() != com.kotto.be.model.Role.ADMIN) {
+            return ResponseEntity.status(403).build();
+        }
+        
+        String newStatus = request.get("status");
+        if (newStatus == null || newStatus.isEmpty()) {
+            return ResponseEntity.badRequest().body("Status is required");
+        }
+        try {
+            OrderDTO updatedOrder = orderService.updateOrderStatus(id, newStatus);
+            return ResponseEntity.ok(updatedOrder);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body(e.getMessage());
+        }
+    }
+
+    @org.springframework.web.bind.annotation.PutMapping("/{id}/cancel")
+    public ResponseEntity<?> cancelOrder(Authentication authentication, @org.springframework.web.bind.annotation.PathVariable Long id) {
+        if (authentication == null || authentication.getName() == null) {
+            return ResponseEntity.status(401).build();
+        }
+        User user = userRepository.findByEmail(authentication.getName()).orElse(null);
+        if (user == null) {
+            return ResponseEntity.status(404).build();
+        }
+        
+        try {
+            OrderDTO cancelledOrder = orderService.cancelUserOrder(id, user);
+            return ResponseEntity.ok(cancelledOrder);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(java.util.Map.of("message", e.getMessage()));
+        }
+    }
 }

@@ -2,6 +2,7 @@ import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import styles from "./Navbar.module.css";
+import logo from "../assets/Logo.png";
 
 const Navbar = () => {
   const { user, logout } = useAuth();
@@ -52,8 +53,7 @@ const Navbar = () => {
           style={{ cursor: "pointer" }}
           onClick={() => navigate("/")}
         >
-          <div className={styles.logo}>K</div>
-          <span className={styles.brandText}>KOTTO</span>
+          <img src={logo} alt="KOTTO Logo" className={styles.logoImage} />
         </div>
 
         <div className={styles.nav}>

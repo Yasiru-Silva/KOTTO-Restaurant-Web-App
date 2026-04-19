@@ -25,29 +25,15 @@
   user-select: none;
 }
 
-.logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--primary), #cc2a00);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 800;
-  font-size: 1.2rem;
-  letter-spacing: .5px;
-  box-shadow: 0 4px 12px rgba(255, 52, 0, 0.3);
-  color: #fff;
+.logoImage {
+  height: 60px;
+  width: auto;
+  object-fit: contain;
+  transition: transform 0.2s ease;
 }
 
-.brandText {
-  font-family: var(--font-family);
-  font-weight: 700;
-  font-size: 1.4rem;
-  letter-spacing: .05em;
-  background: linear-gradient(to right, #fff, #ccc);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.logoImage:hover {
+  transform: scale(1.05);
 }
 
 .nav {

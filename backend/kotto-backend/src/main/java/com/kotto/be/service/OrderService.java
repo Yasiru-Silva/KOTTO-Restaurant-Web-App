@@ -65,4 +65,41 @@ public class OrderService {
 
         return orderRepository.save(order);
     }
+
+    public OrderDTO updateOrderStatus(Long orderId, String status) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+        if ("READY".equals(order.getStatus())) {
+            throw new RuntimeException("Cannot change status once it is READY");
+        }
+        order.setStatus(status);
+        orderRepository.save(order);
+        return OrderDTO.builder()
+            .id(order.getId())
+            .total(order.getTotal())
+            .status(order.getStatus())
+            .orderType(order.getOrderType())
+            .deliveryAddress(order.getDeliveryAddress())
+            .userName(order.getUser() != null ? order.getUser().getName() : "")
+            .build();
+    }
+
+    public OrderDTO cancelUserOrder(Long orderId, User user) {
+        Order order = orderRepository.findById(orderId).orElseThrow(() -> new RuntimeException("Order not found"));
+        if (!order.getUser().getId().equals(user.getId())) {
+            throw new RuntimeException("Not authorized to cancel this order");
+        }
+        if (!"CONFIRMED".equals(order.getStatus())) {
+            throw new RuntimeException("Can only cancel CONFIRMED orders");
+        }
+        order.setStatus("CANCELLED");
+        orderRepository.save(order);
+        return OrderDTO.builder()
+            .id(order.getId())
+            .total(order.getTotal())
+            .status(order.getStatus())
+            .orderType(order.getOrderType())
+            .deliveryAddress(order.getDeliveryAddress())
+            .userName(order.getUser() != null ? order.getUser().getName() : "")
+            .build();
+    }
 }
