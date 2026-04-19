@@ -32,4 +32,10 @@ public class ReservationController {
         String userEmail = authentication.getName();
         return reservationService.getUserReservations(userEmail);
     }
+
+    @PutMapping("/{id}/cancel")
+    public ReservationResponseDto cancelReservation(@PathVariable Long id, Authentication authentication) {
+        String userEmail = authentication.getName();
+        return reservationService.cancelReservation(id, userEmail);
+    }
 }

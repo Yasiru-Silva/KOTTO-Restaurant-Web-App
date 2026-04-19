@@ -4,7 +4,7 @@ import { useAuth } from "../context/AuthContext";
 import { getMenu } from "../services/menuService";
 import "../styles/MenuPage.css";
 
-function MenuList({ moodId, categoryId, refreshKey, onMenuChanged }) {
+function MenuList({ moodId, categoryId, refreshKey, onMenuChanged, onlyBestSellers }) {
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -20,7 +20,10 @@ function MenuList({ moodId, categoryId, refreshKey, onMenuChanged }) {
       setLoading(true);
       setError(null);
       try {
-        const data = await getMenu(moodId, categoryId);
+        let data = await getMenu(moodId, categoryId);
+        if (onlyBestSellers) {
+          data = data.filter(item => item.bestSeller);
+        }
         setMenu(data);
       } catch (err) {
         console.error("Failed to fetch menu:", err);
@@ -31,7 +34,7 @@ function MenuList({ moodId, categoryId, refreshKey, onMenuChanged }) {
     };
 
     fetchMenu();
-  }, [moodId, categoryId, refreshKey]);
+  }, [moodId, categoryId, refreshKey, onlyBestSellers]);
 
   if (loading) {
     return (
@@ -70,7 +73,9 @@ function MenuList({ moodId, categoryId, refreshKey, onMenuChanged }) {
           color: "var(--text-muted)",
         }}
       >
-        No dishes match these filters. Try another mood or category.
+        {onlyBestSellers 
+          ? "No best deals available right now." 
+          : "No dishes match these filters. Try another mood or category."}
       </div>
     );
   }

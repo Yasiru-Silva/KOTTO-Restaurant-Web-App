@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import { getUserReservations, getUserOrders } from "../services/profileService";
+import { getUserReservations, getUserOrders, cancelReservation, cancelOrder } from "../services/profileService";
 import styles from "./ProfilePage.module.css";
 
 const ProfilePage = () => {
@@ -43,6 +43,34 @@ const ProfilePage = () => {
     navigate("/login");
   };
 
+  const handleCancelReservation = async (id) => {
+    if (!window.confirm("Are you sure you want to cancel this reservation?")) return;
+    
+    const res = await cancelReservation(id);
+    if (res.success) {
+      setReservations(prev => 
+        prev.map(r => r.id === id ? { ...r, status: "CANCELLED" } : r)
+      );
+      alert("Reservation cancelled successfully.");
+    } else {
+      alert(res.message || "Failed to cancel reservation");
+    }
+  };
+
+  const handleCancelOrder = async (id) => {
+    if (!window.confirm("Are you sure you want to cancel this order?")) return;
+    
+    const res = await cancelOrder(id);
+    if (res.success) {
+      setOrders(prev => 
+        prev.map(o => o.id === id ? { ...o, status: "CANCELLED" } : o)
+      );
+      alert("Order cancelled successfully.");
+    } else {
+      alert(res.message || "Failed to cancel order");
+    }
+  };
+
   const getStatusBadgeClass = (status) => {
     switch (status?.toUpperCase()) {
       case "PENDING":
@@ -51,6 +79,8 @@ const ProfilePage = () => {
         return styles.badgeApproved;
       case "REJECTED":
         return styles.badgeRejected;
+      case "CANCELLED":
+        return styles.badgeCancelled || styles.badgeRejected;
       case "CONFIRMED":
         return styles.badgeConfirmed;
       case "COMPLETED":
@@ -58,6 +88,14 @@ const ProfilePage = () => {
       default:
         return styles.badgePending;
     }
+  };
+
+  const canCancel = (date, startTime) => {
+    if (!date || !startTime) return false;
+    const resDateTime = new Date(`${date}T${startTime}`);
+    const now = new Date();
+    const diffHours = (resDateTime - now) / (1000 * 60 * 60);
+    return diffHours >= 5;
   };
 
   if (!user) return null; // Prevent flicker before redirect
@@ -107,13 +145,23 @@ const ProfilePage = () => {
                             {res.guests} Guests • {res.seatingType?.replace("_", " ")}
                           </span>
                         </div>
-                        <span
-                          className={`${styles.badge} ${getStatusBadgeClass(
-                            res.status
-                          )}`}
-                        >
-                          {res.status}
-                        </span>
+                        <div className={styles.itemActions}>
+                          <span
+                            className={`${styles.badge} ${getStatusBadgeClass(
+                              res.status
+                            )}`}
+                          >
+                            {res.status}
+                          </span>
+                          {res.status !== "CANCELLED" && res.status !== "COMPLETED" && res.status !== "REJECTED" && canCancel(res.date, res.startTime) && (
+                            <button 
+                              className={styles.cancelBtn}
+                              onClick={() => handleCancelReservation(res.id)}
+                            >
+                              Cancel
+                            </button>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -135,13 +183,23 @@ const ProfilePage = () => {
                           <span className={styles.itemTitle}>Order #{order.id}</span>
                           <span className={styles.itemMeta}>Total: ${order.total}</span>
                         </div>
-                        <span
-                          className={`${styles.badge} ${getStatusBadgeClass(
-                            order.status
-                          )}`}
-                        >
-                          {order.status}
-                        </span>
+                        <div className={styles.itemActions}>
+                          <span
+                            className={`${styles.badge} ${getStatusBadgeClass(
+                              order.status
+                            )}`}
+                          >
+                            {order.status}
+                          </span>
+                          {order.status === "CONFIRMED" && (
+                            <button 
+                              className={styles.cancelBtn}
+                              onClick={() => handleCancelOrder(order.id)}
+                            >
+                              Cancel
+                            </button>
+                          )}
+                        </div>
                       </div>
                     ))}
                   </div>

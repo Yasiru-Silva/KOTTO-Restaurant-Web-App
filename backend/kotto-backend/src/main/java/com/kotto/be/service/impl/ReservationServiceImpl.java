@@ -134,6 +134,32 @@ public class ReservationServiceImpl implements ReservationService {
         return mapToDto(saved);
     }
 
+    @Override
+    public ReservationResponseDto cancelReservation(Long reservationId, String userEmail) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new ApiError(HttpStatus.NOT_FOUND, "Reservation not found"));
+
+        if (!reservation.getUser().getEmail().equals(userEmail)) {
+            throw new ApiError(HttpStatus.FORBIDDEN, "Not authorized to cancel this reservation");
+        }
+
+        if (reservation.getStatus() == ReservationStatus.CANCELLED) {
+            throw new ApiError(HttpStatus.BAD_REQUEST, "Reservation is already cancelled");
+        }
+
+        java.time.LocalDateTime reservationDateTime = java.time.LocalDateTime.of(reservation.getDate(), reservation.getStartTime());
+        java.time.LocalDateTime now = java.time.LocalDateTime.now();
+
+        if (reservationDateTime.minusHours(5).isBefore(now)) {
+            throw new ApiError(HttpStatus.BAD_REQUEST, "Cannot cancel within 5 hours of reservation time");
+        }
+
+        reservation.setStatus(ReservationStatus.CANCELLED);
+        Reservation saved = reservationRepository.save(reservation);
+
+        return mapToDto(saved);
+    }
+
     private boolean isValidStep(LocalTime t) {
         return t.getMinute() == 0 || t.getMinute() == 30;
     }

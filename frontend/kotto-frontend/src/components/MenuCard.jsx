@@ -99,9 +99,11 @@ function MenuCard({ item, isAdmin, onMenuChanged }) {
             LKR {Number(item.price).toLocaleString()}
           </span>
 
-          <button type="button" onClick={handleAddToCart}>
-            Add to Cart
-          </button>
+          {!isAdmin && (
+            <button type="button" onClick={handleAddToCart}>
+              Add to Cart
+            </button>
+          )}
         </div>
       </div>
     </div>

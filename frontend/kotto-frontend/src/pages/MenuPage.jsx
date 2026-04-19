@@ -32,7 +32,11 @@ function MenuPage() {
 
       <section className="best-deals">
         <h2>🔥 Our Best Deals</h2>
-        <p>Special combo meals coming soon</p>
+        <MenuList
+          onlyBestSellers={true}
+          refreshKey={menuRefresh}
+          onMenuChanged={bumpMenu}
+        />
       </section>
 
       <section id="menu-section">

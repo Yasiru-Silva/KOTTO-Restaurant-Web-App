@@ -34,3 +34,13 @@ export const getAllOrders = async () => {
     return [];
   }
 };
+
+export const updateOrderStatus = async (orderId, status) => {
+  try {
+    const response = await api.put(`/api/orders/${orderId}/status`, { status });
+    return { success: true, data: response.data };
+  } catch (error) {
+    console.error("Error updating order status:", error);
+    return { success: false, message: "Failed to update order status" };
+  }
+};

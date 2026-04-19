@@ -21,3 +21,29 @@ export const getUserOrders = async () => {
         return [];
     }
 };
+
+export const cancelReservation = async (reservationId) => {
+    try {
+        const response = await api.put(`/api/reservations/${reservationId}/cancel`);
+        return { success: true, data: response.data };
+    } catch (error) {
+        console.error("Error cancelling reservation:", error);
+        return { 
+            success: false, 
+            message: error.response?.data?.message || "Failed to cancel reservation" 
+        };
+    }
+};
+
+export const cancelOrder = async (orderId) => {
+    try {
+        const response = await api.put(`/api/orders/${orderId}/cancel`);
+        return { success: true, data: response.data };
+    } catch (error) {
+        console.error("Error cancelling order:", error);
+        return { 
+            success: false, 
+            message: error.response?.data?.message || "Failed to cancel order" 
+        };
+    }
+};

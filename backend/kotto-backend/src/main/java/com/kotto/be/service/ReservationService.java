@@ -16,4 +16,6 @@ public interface ReservationService {
     ReservationResponseDto approveReservation(Long reservationId);
 
     ReservationResponseDto rejectReservation(Long reservationId);
+
+    ReservationResponseDto cancelReservation(Long reservationId, String userEmail);
 }
