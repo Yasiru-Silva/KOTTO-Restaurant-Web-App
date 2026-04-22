@@ -11,6 +11,8 @@ import ReservationPage from "./pages/ReservationPage";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Logout from "./pages/Logout";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 import ProfilePage from "./pages/ProfilePage";
 import AdminReservationsPage from "./pages/AdminReservationsPage";
 import InventoryPage from "./pages/InventoryPage";
@@ -96,6 +98,8 @@ export default function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Register />} />
             <Route path="/logout" element={<Logout />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
             <Route path="/singin" element={<Login />} />
 
             <Route path="*" element={<div style={{ padding: 24 }}>NOT FOUND</div>} />

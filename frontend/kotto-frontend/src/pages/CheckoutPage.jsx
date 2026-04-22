@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
+import { useAuth } from "../context/AuthContext";
 import styles from "./CheckoutPage.module.css";
 import OrderConfirmationModal from "../components/OrderConfirmationModal";
 import { submitOrder } from "../services/orderService";
@@ -8,6 +9,7 @@ import { submitOrder } from "../services/orderService";
 export default function CheckoutPage() {
   const navigate = useNavigate();
   const { cartItems, subtotal, clearCart, updateQuantity, removeItem } = useCart();
+  const { user } = useAuth();
   const [orderType, setOrderType] = useState("delivery"); // 'delivery' or 'pickup'
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [orderConfirm, setOrderConfirm] = useState({ isOpen: false, orderId: null });
@@ -18,6 +20,11 @@ export default function CheckoutPage() {
   const total = subtotal + deliveryFee;
 
   const handlePlaceOrder = async () => {
+    if (!user) {
+      navigate("/login");
+      return;
+    }
+
     if (orderType === "delivery" && deliveryAddress.trim() === "") {
       setAddressError(true);
       return;
