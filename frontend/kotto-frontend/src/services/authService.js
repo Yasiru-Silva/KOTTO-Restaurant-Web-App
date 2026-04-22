@@ -21,3 +21,23 @@ export async function loginUser(payload) {
   const res = await api.post("/api/auth/login", payload);
   return res.data;
 }
+
+/**
+ * Initiate password reset process
+ * @param {Object} payload - { email: string }
+ * @returns {Object} - { message: string }
+ */
+export async function forgotPassword(payload) {
+  const res = await api.post("/api/auth/forgot-password", payload);
+  return res.data;
+}
+
+/**
+ * Reset password using token from email
+ * @param {Object} payload - { token: string, newPassword: string }
+ * @returns {Object} - { message: string }
+ */
+export async function resetPassword(payload) {
+  const res = await api.post("/api/auth/reset-password", payload);
+  return res.data;
+}

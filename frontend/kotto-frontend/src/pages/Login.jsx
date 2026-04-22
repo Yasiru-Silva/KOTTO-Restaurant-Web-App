@@ -81,6 +81,21 @@ export default function Login() {
           <div className="auth-error">{errors.password}</div>
         ) : null}
 
+        <a
+          href="/forgot-password"
+          style={{
+            display: "block",
+            textAlign: "right",
+            fontSize: "0.9rem",
+            color: "#d97706",
+            textDecoration: "none",
+            marginBottom: "1rem",
+            fontWeight: "500",
+          }}
+        >
+          Forgot Password?
+        </a>
+
         <button className="auth-btn" type="submit" disabled={!canSubmit}>
           {loading ? "Logging in..." : "Login"}
         </button>

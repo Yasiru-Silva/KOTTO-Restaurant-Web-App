@@ -47,4 +47,9 @@ public class AdminCatalogController {
         moodService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @ExceptionHandler(org.springframework.dao.DataIntegrityViolationException.class)
+    public ResponseEntity<Map<String, String>> handleDataIntegrityViolation(org.springframework.dao.DataIntegrityViolationException ex) {
+        return ResponseEntity.badRequest().body(Map.of("message", "Cannot delete this item because it is currently being used by one or more menu items. Please remove it from all menu items first."));
+    }
 }
