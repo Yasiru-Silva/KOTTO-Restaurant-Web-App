@@ -1,7 +1,8 @@
 import axios from "axios";
+import { API_BASE } from "../config/apiBase";
 
 export const api = axios.create({
-  baseURL: "http://localhost:8081",
+  baseURL: API_BASE,
 });
 
 // attach token to every request automatically

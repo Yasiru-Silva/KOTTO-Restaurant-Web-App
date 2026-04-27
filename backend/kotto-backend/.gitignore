@@ -36,6 +36,7 @@ application-prod.properties
 
 .env
 .env.*
+!.env.example
 
 *.log
 logs/
