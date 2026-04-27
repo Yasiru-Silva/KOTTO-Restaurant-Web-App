@@ -1,4 +1,4 @@
-import mascot from "../assets/kotto_mascot.png";
+import mascot from "../assets/Logo.png";
 import "../styles/Hero.css";
 
 function Hero() {
