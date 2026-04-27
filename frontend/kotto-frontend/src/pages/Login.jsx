@@ -3,9 +3,11 @@ import AuthLayout from "../components/AuthLayout";
 import { loginUser } from "../services/authService";
 import { validateLogin } from "../services/validators";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [touched, setTouched] = useState({ email: false, password: false });
@@ -37,6 +39,7 @@ export default function Login() {
       const data = await loginUser(form);
 
       localStorage.setItem("token", data.token);
+      login(data);
       navigate("/");
     } catch (err) {
       const status = err?.response?.status;
@@ -77,6 +80,21 @@ export default function Login() {
         {touched.password && errors.password ? (
           <div className="auth-error">{errors.password}</div>
         ) : null}
+
+        <a
+          href="/forgot-password"
+          style={{
+            display: "block",
+            textAlign: "right",
+            fontSize: "0.9rem",
+            color: "#d97706",
+            textDecoration: "none",
+            marginBottom: "1rem",
+            fontWeight: "500",
+          }}
+        >
+          Forgot Password?
+        </a>
 
         <button className="auth-btn" type="submit" disabled={!canSubmit}>
           {loading ? "Logging in..." : "Login"}

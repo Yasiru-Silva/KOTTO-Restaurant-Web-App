@@ -1,0 +1,226 @@
+.page {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 24px 80px;
+}
+
+.header h1 {
+  margin: 0 0 8px;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.sub {
+  margin: 0 0 28px;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.field > span:first-child {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.field input[type="text"],
+.field input[type="number"],
+.field input[type="file"],
+.field select,
+.field textarea {
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(15, 23, 42, 0.6);
+  color: var(--text-main);
+  font-family: var(--font-family);
+  font-size: 1rem;
+}
+
+.field textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: rgba(255, 52, 0, 0.5);
+  box-shadow: 0 0 0 3px rgba(255, 52, 0, 0.15);
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.row select {
+  flex: 1;
+}
+
+.inlineAdd {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.inlineAdd input {
+  flex: 1;
+  min-width: 160px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(24, 32, 56, 0.5);
+  color: var(--text-main);
+  font-family: var(--font-family);
+}
+
+.inlineAdd button {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 52, 0, 0.35);
+  background: rgba(255, 52, 0, 0.12);
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-family);
+  white-space: nowrap;
+}
+
+.inlineAdd button:hover {
+  background: rgba(255, 52, 0, 0.22);
+}
+
+.moodGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.moodChip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.moodChipTop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.chipDelete {
+  align-self: flex-start;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(220, 20, 60, 0.08);
+  color: #fda4af;
+  border-radius: 999px;
+  padding: 6px 10px;
+  font-weight: 700;
+  font-size: 0.8rem;
+  cursor: pointer;
+  font-family: var(--font-family);
+}
+
+.chipDelete:hover {
+  background: rgba(220, 20, 60, 0.14);
+}
+
+.chipDelete:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.categoryGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.categoryChip {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.categoryName {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+.moodChip input {
+  accent-color: var(--primary);
+}
+
+.check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.check input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary);
+}
+
+.submit {
+  margin-top: 8px;
+  padding: 14px 24px;
+  border: none;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--primary), #cc2a00);
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  font-family: var(--font-family);
+  box-shadow: 0 8px 24px rgba(255, 52, 0, 0.35);
+}
+
+.submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.muted {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.fileHint {
+  font-size: 0.85rem;
+  color: var(--secondary);
+}

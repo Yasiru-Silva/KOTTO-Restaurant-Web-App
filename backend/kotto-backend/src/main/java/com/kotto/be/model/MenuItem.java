@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -30,7 +31,15 @@ public class MenuItem {
 
     private boolean bestSeller;
 
-    // Example for mood tags (Hungry, Relaxed, etc.)
-    @ElementCollection(fetch = FetchType.EAGER)
-    private Set<String> moods;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private FoodCategory category;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "menu_item_moods",
+            joinColumns = @JoinColumn(name = "menu_item_id"),
+            inverseJoinColumns = @JoinColumn(name = "mood_id")
+    )
+    private Set<Mood> moods = new HashSet<>();
 }

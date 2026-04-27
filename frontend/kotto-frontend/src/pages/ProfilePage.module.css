@@ -1,0 +1,251 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  font-family: 'Inter', sans-serif;
+  color: #333;
+}
+
+.header {
+  margin-bottom: 2.5rem;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.1rem;
+}
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  border: 1px solid #eee;
+}
+
+/* User Horizontal Bar */
+.userHorizontalBar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+}
+
+.userInfoLeft {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.avatarSmall {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #1a2980 0%, #26d0ce 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  font-weight: 600;
+  box-shadow: 0 4px 8px rgba(38, 208, 206, 0.3);
+}
+
+.userDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.userName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0;
+}
+
+.userEmail {
+  font-size: 1rem;
+  color: #777;
+  margin: 0;
+}
+
+.logoutBtnRow {
+  background: #fff;
+  color: #ff4757;
+  border: 1px solid #ff4757;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logoutBtnRow:hover {
+  background: #ff4757;
+  color: white;
+  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.2);
+}
+
+.historyContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 0.5rem;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.listItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.listItem:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  background: #fff;
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.itemTitle {
+  font-weight: 600;
+  color: #333;
+}
+
+.itemMeta {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.itemActions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.5rem;
+}
+
+.cancelBtn {
+  background: transparent;
+  color: #ff4757;
+  border: 1px solid #ff4757;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancelBtn:hover {
+  background: #ff4757;
+  color: white;
+}
+
+/* Badges */
+.badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.badgePending {
+  background: #fff3c4;
+  color: #bfa119;
+}
+
+.badgeApproved, .badgeConfirmed {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badgeRejected, .badgeCancelled {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+.badgeCompleted {
+  background: #cce5ff;
+  color: #004085;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 2rem;
+  background: #f9f9f9;
+  border-radius: 10px;
+  border: 1px dashed #ccc;
+  color: #888;
+  font-size: 0.95rem;
+}
+
+.loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 1.2rem;
+  color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .historyContainer {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .userHorizontalBar {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .userInfoLeft {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}

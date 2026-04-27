@@ -1,65 +1,118 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import Navbar from "./components/Navbar";        // Global navbar shown on every page
-import MenuPage from "./pages/MenuPage";         // Menu page (home page)
-import Footer from "./components/Footer";        // Global footer shown on every page
-import CartDrawer from "./components/CartDrawer";// Global cart drawer
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import MenuPage from "./pages/MenuPage";
+import Footer from "./components/Footer";
+import CartDrawer from "./components/CartDrawer";
 import { CartProvider } from "./context/CartContext";
+import { ToastProvider } from "./context/ToastContext";
 
-import ReservationPage from "./pages/ReservationPage"; // Reservation page component
-import Login from "./pages/Login";              // Login page
-import Register from "./pages/Register";        // Register page
-import Logout from "./pages/Logout";            // Logout page
+import ReservationPage from "./pages/ReservationPage";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Logout from "./pages/Logout";
+import ForgotPasswordPage from "./pages/ForgotPasswordPage";
+import ResetPasswordPage from "./pages/ResetPasswordPage";
+import ProfilePage from "./pages/ProfilePage";
+import AdminReservationsPage from "./pages/AdminReservationsPage";
+import InventoryPage from "./pages/InventoryPage";
+import AdminAddItemPage from "./pages/AdminAddItemPage";
+import AdminEditItemPage from "./pages/AdminEditItemPage";
+import AdminOrdersPage from "./pages/admin/AdminOrdersPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import CheckoutPage from "./pages/CheckoutPage";
+
+import { AuthProvider } from "./context/AuthContext";
 
 export default function App() {
+  const location = useLocation();
+  const authRoutes = ["/login", "/signin", "/signup", "/singin", "/forgot-password", "/reset-password", "/logout"];
+  const hideNav = authRoutes.includes(location.pathname);
+
   return (
-    <CartProvider>
+    <AuthProvider>
+      <ToastProvider>
+        <CartProvider>
+          {!hideNav && <Navbar />}
 
-      {/* Navbar appears on ALL pages */}
-      {/* If the mysterious reservation UI appears everywhere, 
-         also check inside Navbar.jsx */}
-      <Navbar />
-      
-      <Routes>
+          <Routes>
+            <Route path="/menu" element={<Navigate to="/" replace />} />
 
-        {/* Redirect /menu → / (keeps only one home URL) */}
-        <Route path="/menu" element={<Navigate to="/" replace />} />
+            <Route path="/" element={<MenuPage />} />
 
-        {/* Home page (Menu) */}
-        <Route path="/" element={<MenuPage />} />
-        {/* If reservation UI appears at bottom of menu,
-           check inside MenuPage.jsx */}
+            <Route path="/reservation" element={<ReservationPage />} />
 
-        {/* Reservation page */}
-        <Route path="/reservation" element={<ReservationPage />} />
-        {/* Reservation UI should ONLY appear in this component */}
+            <Route path="/checkout" element={<CheckoutPage />} />
 
-        {/* Authentication pages */}
-        <Route path="/signin" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Register />} />
-        <Route path="/logout" element={<Logout />} />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute allowedRoles={["USER", "ADMIN"]}>
+                  <ProfilePage />
+                </ProtectedRoute>
+              }
+            />
 
-        {/* Typo compatibility route */}
-        <Route path="/singin" element={<Login />} />
+            <Route
+              path="/admin/reservations"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <AdminReservationsPage />
+                </ProtectedRoute>
+              }
+            />
 
-        {/* Fallback route for unknown URLs */}
-        {/* You earlier had redirect to "/", but we replaced it temporarily 
-           to help debug routing */}
-        {/* <Route path="*" element={<Navigate to="/" replace />} /> */}
+            <Route
+              path="/admin/inventory"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <InventoryPage />
+                </ProtectedRoute>
+              }
+            />
 
-        <Route path="*" element={<div style={{ padding: 24 }}>NOT FOUND</div>} />
-      </Routes>
+            <Route
+              path="/admin/orders"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <AdminOrdersPage />
+                </ProtectedRoute>
+              }
+            />
 
-      {/* Footer appears on ALL pages */}
-      {/* If reservation UI appears on login/register pages,
-         also check Footer.jsx */}
-      <Footer />
+            <Route
+              path="/admin/add-item"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <AdminAddItemPage />
+                </ProtectedRoute>
+              }
+            />
 
-      {/* Cart drawer is global */}
-      {/* Also check CartDrawer.jsx if unexpected UI appears */}
-      <CartDrawer />
+            <Route
+              path="/admin/edit-item/:id"
+              element={
+                <ProtectedRoute allowedRoles={["ADMIN"]}>
+                  <AdminEditItemPage />
+                </ProtectedRoute>
+              }
+            />
+ 
+            <Route path="/signin" element={<Login />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Register />} />
+            <Route path="/logout" element={<Logout />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPasswordPage />} />
+            <Route path="/singin" element={<Login />} />
 
-    </CartProvider>
+            <Route path="*" element={<div style={{ padding: 24 }}>NOT FOUND</div>} />
+          </Routes>
+
+          {!hideNav && <Footer />}
+          <CartDrawer />
+        </CartProvider>
+      </ToastProvider>
+    </AuthProvider>
   );
 }

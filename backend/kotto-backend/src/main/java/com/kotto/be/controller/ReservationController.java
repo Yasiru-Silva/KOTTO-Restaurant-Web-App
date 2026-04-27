@@ -2,6 +2,7 @@ package com.kotto.be.controller;
 
 import com.kotto.be.dto.CreateReservationRequest;
 import com.kotto.be.dto.CreateReservationResponse;
+import com.kotto.be.dto.ReservationResponseDto;
 import com.kotto.be.service.ReservationService;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
@@ -24,5 +25,17 @@ public class ReservationController {
     ) {
         String userEmail = authentication.getName(); // comes from JWT subject (email)
         return reservationService.create(request, userEmail);
+    }
+
+    @GetMapping("/my-reservations")
+    public java.util.List<ReservationResponseDto> getMyReservations(Authentication authentication) {
+        String userEmail = authentication.getName();
+        return reservationService.getUserReservations(userEmail);
+    }
+
+    @PutMapping("/{id}/cancel")
+    public ReservationResponseDto cancelReservation(@PathVariable Long id, Authentication authentication) {
+        String userEmail = authentication.getName();
+        return reservationService.cancelReservation(id, userEmail);
     }
 }

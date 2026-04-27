@@ -46,6 +46,16 @@
   display: block;
 }
 
+.link {
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.link:hover {
+  color: var(--primary);
+  text-decoration: underline;
+}
+
 .bottom {
   margin-top: 40px;
   padding-top: 20px;

@@ -3,9 +3,11 @@ import AuthLayout from "../components/AuthLayout";
 import { registerUser } from "../services/authService";
 import { validateRegister } from "../services/validators";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Register() {
   const navigate = useNavigate();
+  const { login } = useAuth();
 
   const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [touched, setTouched] = useState({ name: false, email: false, password: false });
@@ -40,6 +42,7 @@ export default function Register() {
 
       // Store token (simple approach for now)
       localStorage.setItem("token", data.token);
+      login(data);
 
       // Redirect after signup
       navigate("/");
