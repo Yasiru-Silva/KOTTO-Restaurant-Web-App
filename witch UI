@@ -1,0 +1,187 @@
+* [33m71a8310[m[33m ([m[1;32mfeature/forgot-password[m[33m)[m UI update
+* [33m4238f88[m[33m ([m[1;31morigin/feature/forgot-password[m[33m, [m[1;32mBug-fix[m[33m)[m Implement forgot password feature
+* [33ma1804e2[m[33m ([m[1;31morigin/Bug-fix[m[33m)[m Fixing bugs
+* [33m3aadb7b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mUI[m[33m, [m[1;31morigin/dev[m[33m, [m[1;31morigin/UI[m[33m, [m[1;32mdev[m[33m)[m Remove bugs
+*   [33m1187cc3[m Merge pull request #22 from Yasiru-Silva/KRWA-151-Delete-ingredient
+[32m|[m[33m\[m  
+[32m|[m * [33m6dbb256[m replace AdminInventoryController
+[32m|[m * [33m4d36029[m create IngredientServiceImpl
+* [33m|[m   [33m2dfd487[m Merge pull request #21 from Yasiru-Silva/KRWA-150-Edit-ingredient
+[34m|[m[35m\[m [33m\[m  
+[34m|[m * [33m|[m [33m68af9bf[m add InventoryPage
+[34m|[m * [33m|[m [33mc4bd824[m create IngredientForm
+[34m|[m * [33m|[m [33mfdfe8ac[m add frontend service for inventory
+[34m|[m * [33m|[m [33mc68e71a[m update IngredientRequest
+[34m|[m * [33m|[m [33m317ef4a[m add Ingredient entity
+[34m|[m [33m|[m[33m/[m  
+* [33m|[m   [33m490c7ec[m Merge pull request #20 from Yasiru-Silva/KRWA-149-Add-ingredient
+[36m|[m[1;31m\[m [33m\[m  
+[36m|[m * [33m|[m [33mfc95692[m implement IngredientService
+[36m|[m * [33m|[m [33me12e316[m add ingredient form modal
+[36m|[m * [33m|[m [33md3ce5d0[m add CreateIngredientRequest DTO
+[36m|[m * [33m|[m [33m9dc2656[m make IngredientRepository
+[36m|[m [33m|[m[33m/[m  
+* [33m|[m   [33m97d419c[m Merge pull request #19 from Yasiru-Silva/KRWA-148-Inventory-page-list
+[1;32m|[m[1;33m\[m [33m\[m  
+[1;32m|[m * [33m\[m   [33m2dfae1f[m Merge branch 'dev' into KRWA-148-Inventory-page-list
+[1;32m|[m [1;34m|[m[1;32m\[m [33m\[m  
+[1;32m|[m [1;34m|[m[1;32m/[m [33m/[m  
+[1;32m|[m[1;32m/[m[1;34m|[m [33m|[m   
+* [1;34m|[m [33m|[m   [33m0c60a28[m Merge pull request #18 from Yasiru-Silva/KRWA-35-Qty-update-remove-at-0
+[1;36m|[m[31m\[m [1;34m\[m [33m\[m  
+[1;36m|[m * [1;34m|[m [33m|[m [33m22f3a2e[m Finalize KRWA-35 Quantity updates
+[1;36m|[m * [1;34m|[m [33m|[m [33m1d08aaf[m feat: Introduce updateQuantity functionality to checkout UI
+[1;36m|[m * [1;34m|[m [33m|[m [33m13738d6[m refactor: Handle zero and negative cart quantities
+[1;36m|[m * [1;34m|[m [33m|[m [33m370b4bf[m  Start feature KRWA-35
+* [31m|[m [1;34m|[m [33m|[m [33m7ae5746[m Merge pull request #17 from Yasiru-Silva/KRWA-135-Place-order-API
+[32m|[m[31m\[m[31m|[m [1;34m|[m [33m|[m 
+[32m|[m * [1;34m|[m [33m|[m [33mf4d3900[m Implement Place Order feature
+[32m|[m * [1;34m|[m [33m|[m [33mbeef784[m Implement order history in profile
+[32m|[m [33m|[m [1;34m|[m[33m/[m  
+[32m|[m [33m|[m[33m/[m[1;34m|[m   
+* [33m|[m [1;34m|[m   [33m3683608[m Merge pull request #16 from Yasiru-Silva/KRWA-162-Admin-Create-Menu-Item
+[33m|[m[35m\[m [33m\[m [1;34m\[m  
+[33m|[m [35m|[m[33m/[m [1;34m/[m  
+[33m|[m[33m/[m[35m|[m [1;34m|[m   
+[33m|[m * [1;34m|[m [33m64e166e[m Frontend
+[33m|[m * [1;34m|[m [33m2ad6b9a[m Modified files
+[33m|[m * [1;34m|[m [33m81b3373[m Mood Service
+[33m|[m * [1;34m|[m [33m632a164[m File Storage Service
+[33m|[m * [1;34m|[m [33m01c6f10[m Category Service
+[33m|[m * [1;34m|[m [33mfff1e82[m Mood Repository
+[33m|[m * [1;34m|[m [33mf091bd9[m Food Category Repository
+[33m|[m * [1;34m|[m [33ma714e7a[m Mood
+[33m|[m * [1;34m|[m [33mf94d1ac[m Food Category
+[33m|[m * [1;34m|[m [33m8e6a714[m Mood DTO
+[33m|[m * [1;34m|[m [33me28b91a[m Category DTO
+[33m|[m * [1;34m|[m [33mc45de9f[m Admin Mood controller
+[33m|[m * [1;34m|[m [33ma02247d[m Admin Category controller
+[33m|[m * [1;34m|[m [33m3f5e856[m Admin create menu item controller
+[33m|[m[33m/[m [1;34m/[m  
+[33m|[m * [33m09e519f[m replace navbar
+[33m|[m * [33m204067d[m update App jsx
+[33m|[m * [33m2987bbb[m add inventory page table UI
+[33m|[m * [33m1f6d35b[m create IngredientResponseDto
+[33m|[m * [33m33fe00e[m add IngredientUnit for KG, G, L, ML
+[33m|[m[33m/[m  
+* [33m3a0370e[m Remove bugs and update UI
+*   [33md545051[m Merge pull request #14 from Yasiru-Silva/KRWA-37-Persist-cart-across-refresh
+[36m|[m[1;31m\[m  
+[36m|[m *   [33m689fd0b[m[33m ([m[1;31morigin/KRWA-37-Persist-cart-across-refresh[m[33m)[m Merge branch 'dev' into KRWA-37-Persist-cart-across-refresh
+[36m|[m [1;32m|[m[36m\[m  
+[36m|[m [1;32m|[m[36m/[m  
+[36m|[m[36m/[m[1;32m|[m   
+* [1;32m|[m   [33m087f163[m Merge pull request #13 from Yasiru-Silva/KRWA-147-Restrict-to-ADMIN
+[1;34m|[m[1;35m\[m [1;32m\[m  
+[1;34m|[m * [1;32m|[m [33m429e497[m[33m ([m[1;31morigin/KRWA-147-Restrict-to-ADMIN[m[33m)[m add admin reservation controller with secured endpoints
+[1;34m|[m * [1;32m|[m [33mc84a22e[m implement protected route for role-based access control
+[1;34m|[m * [1;32m|[m [33mb3b7380[m feat: show admin navigation options based on user role
+* [1;35m|[m [1;32m|[m   [33mde8fea1[m Merge pull request #12 from Yasiru-Silva/KRWA-145-Approve-reservation
+[1;36m|[m[31m\[m [1;35m\[m [1;32m\[m  
+[1;36m|[m * [1;35m|[m [1;32m|[m [33m15a5653[m[33m ([m[1;31morigin/KRWA-145-Approve-reservation[m[33m)[m feat: implement admin reservation logic (view, approve, reject with validation)
+[1;36m|[m * [1;35m|[m [1;32m|[m [33m4e0a516[m feat: add method to fetch all reservations ordered by date and time
+[1;36m|[m * [1;35m|[m [1;32m|[m [33m33536be[m add admin reservation methods (getAll, approve, reject) to service interface
+[1;36m|[m [1;35m|[m[1;35m/[m [1;32m/[m  
+* [1;35m|[m [1;32m|[m   [33mb5b24c5[m Merge pull request #11 from Yasiru-Silva/KRWA-144-Admin-view-reservations
+[1;35m|[m[33m\[m [1;35m\[m [1;32m\[m  
+[1;35m|[m [33m|[m[1;35m/[m [1;32m/[m  
+[1;35m|[m[1;35m/[m[33m|[m [1;32m|[m   
+[1;35m|[m * [1;32m|[m [33m2dc706f[m[33m ([m[1;31morigin/KRWA-144-Admin-view-reservations[m[33m)[m add ReservationStatus enum with PENDING, APPROVED, REJECTED states
+[1;35m|[m * [1;32m|[m [33m92db2ea[m remove ReservationStatus from git
+[1;35m|[m * [1;32m|[m [33me922d99[m feat: create admin reservation management page with approve/reject actions
+[1;35m|[m * [1;32m|[m [33m0a87ac6[m remove AdminReservationsPage from git tracking
+[1;35m|[m * [1;32m|[m [33m4df5558[m feat: add admin reservations route with role protection
+[1;35m|[m * [1;32m|[m [33m36c2290[m create admin reservation management page with approve/reject actions
+[1;35m|[m[1;35m/[m [1;32m/[m  
+[1;35m|[m * [33mbb48603[m feat(cart): clean localStorage upon clearing cart (4/4)
+[1;35m|[m * [33mcb903ed[m feat(cart): save cart items to localStorage on change (3/4)
+[1;35m|[m * [33ma28cb9b[m feat(cart): load cart items from localStorage on startup (2/4)
+[1;35m|[m * [33madaa135[m feat(cart): define storage constants and imports (1/4)
+[1;35m|[m * [33me04e230[m[33m ([m[1;31morigin/KRWA-134-Delivery-address-required[m[33m)[m feat(checkout): add delivery address validation
+[1;35m|[m * [33m1e085b6[m[33m ([m[1;31morigin/KRWA-136-Order-confirmation-popup[m[33m)[m feat(ui): add aesthetic order confirmation modal, toast notifications, and cart badge
+[1;35m|[m * [33m348b3ee[m[33m ([m[1;31morigin/KRWA-58-Checkout-UI[m[33m)[m feat(checkout): implement checkout page functionality
+[1;35m|[m[1;35m/[m  
+*   [33mc56655f[m[33m ([m[1;31morigin/KRWA-146-Reject-reservation[m[33m)[m Merge pull request #9 from Yasiru-Silva/KRWA-26-Profile-Page-UI
+[34m|[m[35m\[m  
+[34m|[m * [33m6fe70bc[m[33m ([m[1;31morigin/KRWA-26-Profile-Page-UI[m[33m, [m[1;32mKRWA-26-Profile-Page-UI[m[33m)[m Update Navbar.jsx
+[34m|[m * [33m1e20002[m Update App.jsx
+[34m|[m * [33mf6f4913[m Add styles for ProfilePage
+[34m|[m * [33m8a97fa6[m Add ProfilePage
+[34m|[m * [33md306e9c[m Create profileService
+[34m|[m * [33m244ff84[m Update ReservationController
+[34m|[m * [33ma3c4802[m Update ReservationServiceImpl
+[34m|[m * [33mfd46112[m Update ReservationService
+[34m|[m * [33m5ffd7dc[m Add ReservationResponseDto
+[34m|[m[34m/[m  
+*   [33m1c49598[m Merge pull request #8 from Yasiru-Silva/KRWA-27-Navbar-auth-state-switching
+[36m|[m[1;31m\[m  
+[36m|[m * [33m40097b0[m[33m ([m[1;31morigin/KRWA-27-Navbar-auth-state-switching[m[33m, [m[1;32mKRWA-27-Navbar-auth-state-switching[m[33m)[m Removing bugs
+[36m|[m * [33mb596ff5[m Adding user & admin navbar
+[36m|[m * [33m8efa4c0[m Adding guest navbar
+[36m|[m * [33m31800b2[m Update SecurityConfig and application properties for AuthContext
+[36m|[m[36m/[m  
+*   [33mcd36adc[m[33m ([m[1;32mKRWA-52-RBAC-enforcement[m[33m)[m Merge pull request #7 from Yasiru-Silva/KRWA-52-RBAC-enforcement
+[1;32m|[m[1;33m\[m  
+[1;32m|[m * [33m070a320[m[33m ([m[1;31morigin/KRWA-52-RBAC-enforcement[m[33m)[m fix RBAC config and properties
+* [1;33m|[m [33mfc0ce33[m Merge pull request #6 from Yasiru-Silva/KRWA-52-RBAC-enforcement
+[1;34m|[m[1;33m\[m[1;33m|[m 
+[1;34m|[m * [33m288b7dd[m Add ProtectedRoute to FE
+[1;34m|[m * [33md1024b1[m Add AdminInventoryController
+[1;34m|[m * [33m780853e[m Add AdminReservationController
+[1;34m|[m * [33mcd208fa[m Add AdminOrderController
+[1;34m|[m * [33ma80a65a[m Add AdminMenuController class
+[1;34m|[m[1;34m/[m  
+*   [33m3f20ce6[m Merge pull request #5 from Yasiru-Silva/main
+[1;36m|[m[31m\[m  
+[1;36m|[m *   [33m56d283c[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Merge pull request #4 from Yasiru-Silva/dev
+[1;36m|[m [32m|[m[1;36m\[m  
+[1;36m|[m [32m|[m[1;36m/[m  
+[1;36m|[m[1;36m/[m[32m|[m   
+* [32m|[m [33m75f62e0[m Finalize UI
+* [32m|[m   [33me3610a0[m Merge pull request #3 from Yasiru-Silva/KRWA-25-Backend-seed-data
+[34m|[m[35m\[m [32m\[m  
+[34m|[m * [32m\[m   [33mf3e51e0[m[33m ([m[1;31morigin/KRWA-25-Backend-seed-data[m[33m)[m Merge branch 'dev' into KRWA-25-Backend-seed-data
+[34m|[m [36m|[m[34m\[m [32m\[m  
+[34m|[m [36m|[m[34m/[m [32m/[m  
+[34m|[m[34m/[m[36m|[m [32m|[m   
+* [36m|[m [32m|[m   [33m8c4831c[m Merge branch 'KRWA-30/53/54-cart-drawer-ui/logic/calc' into dev
+[1;32m|[m[1;33m\[m [36m\[m [32m\[m  
+[1;32m|[m * [36m|[m [32m|[m [33mf776ff1[m[33m ([m[1;31morigin/KRWA-30/53/54-cart-drawer-ui/logic/calc[m[33m)[m Update CartDrawer.jsx
+[1;32m|[m * [36m|[m [32m|[m [33m73f5cb9[m Implement cart drawer UI
+* [1;33m|[m [36m|[m [32m|[m   [33m1cad807[m Merge pull request #2 from Yasiru-Silva/KRWA-57-Create-reservation-API
+[1;34m|[m[1;35m\[m [1;33m\[m [36m\[m [32m\[m  
+[1;34m|[m * [1;33m\[m [36m\[m [32m\[m   [33m7c2d1cb[m[33m ([m[1;31morigin/KRWA-57-Create-reservation-API[m[33m)[m Merge branch 'dev' into KRWA-57-Create-reservation-API
+[1;34m|[m [1;36m|[m[1;34m\[m [1;33m\[m [36m\[m [32m\[m  
+[1;34m|[m [1;36m|[m[1;34m/[m [1;33m/[m [36m/[m [32m/[m  
+[1;34m|[m[1;34m/[m[1;36m|[m [1;33m|[m [36m|[m [32m|[m   
+* [1;36m|[m [1;33m|[m [36m|[m [32m|[m   [33m57671ad[m Merge pull request #1 from Yasiru-Silva/KRWA-21-Logout(Registration,login,logout)
+[1;33m|[m[33m\[m [1;36m\[m [1;33m\[m [36m\[m [32m\[m  
+[1;33m|[m [33m|[m[1;33m_[m[1;36m|[m[1;33m/[m [36m/[m [32m/[m  
+[1;33m|[m[1;33m/[m[33m|[m [1;36m|[m [36m|[m [32m|[m   
+[1;33m|[m * [1;36m|[m [36m|[m [32m|[m   [33m23a3893[m[33m ([m[1;31morigin/KRWA-21-Logout[m[33m)[m Merge branch 'dev' into KRWA-21-Logout
+[1;33m|[m [34m|[m[1;33m\[m [1;36m\[m [36m\[m [32m\[m  
+[1;33m|[m [34m|[m[1;33m/[m [1;36m/[m [36m/[m [32m/[m  
+[1;33m|[m[1;33m/[m[34m|[m [1;36m|[m [36m|[m [32m|[m   
+[1;33m|[m * [1;36m|[m [36m|[m [32m|[m [33m61bbc73[m[33m ([m[1;32mKRWA-21-Logout[m[33m)[m Add logout endpoint and frontend logout route
+[1;33m|[m [35m|[m * [36m|[m [32m|[m [33m4f750f5[m update frontend src
+[1;33m|[m [35m|[m * [36m|[m [32m|[m [33m04c02e7[m Add backend src for reservation API
+[1;33m|[m [35m|[m[1;33m/[m [36m/[m [32m/[m  
+[1;33m|[m[1;33m/[m[35m|[m [36m|[m [32m|[m   
+[1;33m|[m [35m|[m * [32m|[m [33m2c8974d[m KRWA-32: Add initial database seeder for menu items
+[1;33m|[m [35m|[m * [32m|[m [33m8e135d3[m[33m ([m[1;31morigin/KRWA-24-Fetch-menu-items[m[33m)[m Added menu backend and UI
+[1;33m|[m [35m|[m[1;33m/[m [32m/[m  
+[1;33m|[m[1;33m/[m[35m|[m [32m|[m   
+* [35m|[m [32m|[m [33m6b84999[m Add SecurityConfig to allow all requests during initial development
+[32m|[m [35m|[m[32m/[m  
+[32m|[m[32m/[m[35m|[m   
+[32m|[m [35m|[m *   [33m886022c[m[33m ([m[1;35mrefs/stash[m[33m)[m On KRWA-50-Registration: logout redo backup
+[32m|[m [35m|[m[35m/[m[1;31m|[m[1;32m\[m  
+[32m|[m [35m|[m [1;31m|[m * [33me5f54ef[m untracked files on KRWA-50-Registration: 123bacc Add FE, Connect FE auth to BE and update security config
+[32m|[m [35m|[m * [33ma31fd41[m index on KRWA-50-Registration: 123bacc Add FE, Connect FE auth to BE and update security config
+[32m|[m [35m|[m[35m/[m  
+[32m|[m * [33m123bacc[m[33m ([m[1;31morigin/KRWA-50-Registration[m[33m, [m[1;32mKRWA-50-Registration[m[33m)[m Add FE, Connect FE auth to BE and update security config
+[32m|[m * [33m0e9a61a[m Implement auth register/login with JWT and global error handling
+[32m|[m * [33m63bb0e9[m Add SecurityConfig to allow all requests during development
+[32m|[m[32m/[m  
+* [33mac37930[m[33m ([m[1;32mmain[m[33m)[m Initial project setup - Backend and Frontend initialized
+* [33m7acc27a[m Initial commit

@@ -58,6 +58,10 @@
   justify-content: center;
 }
 
+.nav {
+  justify-content: flex-end;
+}
+
 .navRight {
   display: flex;
   align-items: center;
