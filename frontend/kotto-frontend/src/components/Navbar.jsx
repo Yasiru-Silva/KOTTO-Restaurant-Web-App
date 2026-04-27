@@ -8,7 +8,8 @@ const Navbar = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const { openCart, cartItems } = useCart();
-  const cartItemCount = cartItems?.reduce((total, item) => total + item.quantity, 0) || 0;
+  const cartItemCount =
+    cartItems?.reduce((total, item) => total + item.quantity, 0) || 0;
 
   const role = user?.role;
   const isUser = role === "USER" || role === "ROLE_USER";
@@ -22,8 +23,18 @@ const Navbar = () => {
   return (
     <header className={styles.header}>
       <nav className={styles.inner}>
-        <div className={styles.nav}>
-          {isAdmin ? (
+        {/* LEFT — Logo / Home */}
+        <div
+          className={styles.brand}
+          style={{ cursor: "pointer" }}
+          onClick={() => navigate("/")}
+        >
+          <img src={logo} alt="KOTTO Logo" className={styles.logoImage} />
+        </div>
+
+        {/* CENTER — Admin navigation */}
+        <div className={styles.navCenter}>
+          {isAdmin && (
             <>
               <button
                 className={styles.navButton}
@@ -37,14 +48,19 @@ const Navbar = () => {
               >
                 Reservations
               </button>
+              <button
+                className={styles.navButton}
+                onClick={() => navigate("/admin/add-item")}
+              >
+                Add Item
+              </button>
+              <button
+                className={styles.navButton}
+                onClick={() => navigate("/admin/inventory")}
+              >
+                Inventory
+              </button>
             </>
-          ) : (
-            <button
-              className={styles.navButton}
-              onClick={() => navigate("/reservation")}
-            >
-              Reservation
-            </button>
           )}
         </div>
 
@@ -71,8 +87,15 @@ const Navbar = () => {
             </>
           )}
 
+          {/* Logged-in user */}
           {isUser && (
             <>
+              <button
+                className={styles.navButton}
+                onClick={() => navigate("/reservation")}
+              >
+                Reservation
+              </button>
               <button className={styles.navButton} onClick={openCart}>
                 Cart {cartItemCount > 0 ? `(${cartItemCount})` : ""}
               </button>
@@ -82,30 +105,14 @@ const Navbar = () => {
               >
                 Profile
               </button>
-              <button className={styles.navButton} onClick={handleLogout}>
-                Logout
-              </button>
             </>
           )}
 
+          {/* Admin */}
           {isAdmin && (
-            <>
-              <button
-                className={styles.navButton}
-                onClick={() => navigate("/admin/add-item")}
-              >
-                Add Item
-              </button>
-              <button
-                className={styles.navButton}
-                onClick={() => navigate("/admin/inventory")}
-              >
-                Inventory
-              </button>
-              <button className={styles.navButton} onClick={handleLogout}>
-                Logout
-              </button>
-            </>
+            <button className={styles.navButton} onClick={handleLogout}>
+              Logout
+            </button>
           )}
         </div>
       </nav>

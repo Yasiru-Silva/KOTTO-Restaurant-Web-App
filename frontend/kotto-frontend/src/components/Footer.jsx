@@ -1,6 +1,8 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./Footer.module.css";
 
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer className={styles.footer}>
       <div className={styles.inner}>
@@ -21,7 +23,12 @@ export default function Footer() {
           {/* Extra links from your branch */}
           <div className={styles.col}>
             <h3 className={styles.title}>Links</h3>
-            <span className={styles.text}>Menu</span>
+            <span
+              className={`${styles.text} ${styles.link}`}
+              onClick={() => navigate("/")}
+            >
+              Menu
+            </span>
             <span className={styles.text}>Contact</span>
             <span className={styles.text}>About</span>
           </div>

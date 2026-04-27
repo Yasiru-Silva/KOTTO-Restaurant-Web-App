@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import MenuPage from "./pages/MenuPage";
 import Footer from "./components/Footer";
@@ -25,11 +25,15 @@ import CheckoutPage from "./pages/CheckoutPage";
 import { AuthProvider } from "./context/AuthContext";
 
 export default function App() {
+  const location = useLocation();
+  const authRoutes = ["/login", "/signin", "/signup", "/singin", "/forgot-password", "/reset-password", "/logout"];
+  const hideNav = authRoutes.includes(location.pathname);
+
   return (
     <AuthProvider>
       <ToastProvider>
         <CartProvider>
-          <Navbar />
+          {!hideNav && <Navbar />}
 
           <Routes>
             <Route path="/menu" element={<Navigate to="/" replace />} />
@@ -105,7 +109,7 @@ export default function App() {
             <Route path="*" element={<div style={{ padding: 24 }}>NOT FOUND</div>} />
           </Routes>
 
-          <Footer />
+          {!hideNav && <Footer />}
           <CartDrawer />
         </CartProvider>
       </ToastProvider>
