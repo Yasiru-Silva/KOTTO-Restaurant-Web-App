@@ -36,7 +36,13 @@
   transform: scale(1.05);
 }
 
-.nav,
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
 .navCenter {
   display: flex;
   align-items: center;
