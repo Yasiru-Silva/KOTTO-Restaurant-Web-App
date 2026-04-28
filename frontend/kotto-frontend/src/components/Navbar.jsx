@@ -64,14 +64,6 @@ const Navbar = () => {
           )}
         </div>
 
-        <div
-          className={styles.brand}
-          style={{ cursor: "pointer" }}
-          onClick={() => navigate("/")}
-        >
-          <img src={logo} alt="KOTTO Logo" className={styles.logoImage} />
-        </div>
-
         <div className={styles.nav}>
           {!user && (
             <>
